@@ -5,19 +5,29 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemIcon,
+  // ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import { Outlet, useNavigate } from "react-router-dom";
 
-export default function Layout({ children }) {
+export default function Layout() {
+  const navigate = useNavigate();
+
+  const drawerList = ["Usuarios", "Ordens de serviço", "Cargas", "Produtos"];
+
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={() => {}}>
+    <Box sx={{ width: 300, textAlign: "center" }} role="presentation">
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary={text} />
+        {drawerList.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton onClick={() => navigate(`/`)}>
+              {/* <ListItemIcon></ListItemIcon> */}
+              <ListItemText
+                primary={item}
+                sx={{
+                  textAlign: "center",
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -29,11 +39,8 @@ export default function Layout({ children }) {
   return (
     <>
       <Drawer variant="permanent">{DrawerList}</Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-      >
-        {children || <p>Nothing to see here!</p>}
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Outlet />
       </Box>
     </>
   );
