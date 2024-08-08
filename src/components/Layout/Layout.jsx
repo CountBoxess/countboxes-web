@@ -6,17 +6,17 @@ import {
   ListItem,
   ListItemButton,
   // ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
+  ListItemText
+} from '@mui/material';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function Layout() {
   const navigate = useNavigate();
 
-  const drawerList = ["Usuarios", "Ordens de serviço", "Cargas", "Produtos"];
+  const drawerList = ['Usuarios', 'Ordens de serviço', 'Cargas', 'Produtos'];
 
   const DrawerList = (
-    <Box sx={{ width: 300, textAlign: "center" }} role="presentation">
+    <Box sx={{ width: 300, textAlign: 'center' }} role="presentation">
       <List>
         {drawerList.map((item) => (
           <ListItem key={item} disablePadding>
@@ -25,7 +25,7 @@ export default function Layout() {
               <ListItemText
                 primary={item}
                 sx={{
-                  textAlign: "center",
+                  textAlign: 'center'
                 }}
               />
             </ListItemButton>
