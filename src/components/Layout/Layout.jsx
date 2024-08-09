@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Avatar,
   Box,
   Divider,
   Drawer,
@@ -7,24 +8,63 @@ import {
   ListItem,
   ListItemButton,
   // ListItemIcon,
-  ListItemText
+  ListItemText,
+  Typography
 } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function Layout() {
   const navigate = useNavigate();
 
-  const drawerList = ['Usuarios', 'Ordens de serviço', 'Cargas', 'Produtos'];
+  const drawerList = [
+    {
+      text: 'Usuarios',
+      path: '/usuarios'
+    }
+  ];
 
   const DrawerList = (
-    <Box sx={{ width: 300, textAlign: 'center' }} role="presentation">
+    <Box sx={{ width: 300 }} role="presentation">
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 3
+        }}>
+        <Avatar
+          src="https://static.generated.photos/vue-static/face-generator/landing/wall/14.jpg"
+          sx={{
+            width: 60,
+            height: 60,
+            marginTop: 1,
+            marginBottom: 3
+          }}
+        />
+        <Box>
+          <Typography
+            sx={{
+              fontSize: 20,
+              fontWeight: 'bold'
+            }}>
+            John Doe
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 16,
+              wordWrap: 'break-word'
+            }}>
+            sdaadaadadsaadd@gmail.com
+          </Typography>
+        </Box>
+      </Box>
+      <Divider />
       <List>
-        {drawerList.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton onClick={() => navigate(`/`)}>
+        {drawerList.map((route) => (
+          <ListItem key={route.text} disablePadding>
+            <ListItemButton onClick={() => navigate(`${route.path}`)}>
               {/* <ListItemIcon></ListItemIcon> */}
               <ListItemText
-                primary={item}
+                primary={route.text}
                 sx={{
                   textAlign: 'center'
                 }}
