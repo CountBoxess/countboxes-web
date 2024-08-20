@@ -88,7 +88,7 @@ export default function Layout() {
   return (
     <>
       <Drawer variant="permanent">{DrawerList}</Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3}}>
         <Outlet />
       </Box>
     </>

@@ -1,10 +1,9 @@
 .users-container {
-    padding: 50px; /* Ajuste o padding conforme necessário */
+    padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f9f9f9;
-    margin: 0 auto; /* Centraliza o container horizontalmente */
-    max-width: 800px; /* Limita a largura máxima */
+    margin-left: 2rem;
   }
   
   .users-header {
@@ -17,24 +16,6 @@
   .users-header h1 {
     margin: 0;
     font-size: 24px;
-  }
-  
-  .users-buttons {
-    display: flex;
-  }
-  
-  .users-buttons button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .users-buttons button:hover {
-    background-color: #45a049;
   }
   
   .users-list {
