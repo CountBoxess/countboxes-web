@@ -7,7 +7,8 @@ import Home from './pages/Home/Home';
 import routes from './routes/routes';
 import SignIn from './pages/SignIn/SignIn';
 import Users from './pages/Users/Users';
-
+import Orders from './pages/Orders/Orders'
+import Loads from "./pages/Loads/Loads"
 function App() {
   const defaultTheme = createTheme();
 
@@ -21,6 +22,9 @@ function App() {
             <Route path={routes.HOME} element={<Layout />}>
               <Route index element={<Home />} />
               <Route path={routes.USUARIOS} element={<Users />} />
+              <Route path={routes.ORDENS_DE_PEDIDO} element={<Orders />} />
+              <Route path={routes.CARGAS} element={<Loads />} />
+
             </Route>
           </Routes>
         </Router>

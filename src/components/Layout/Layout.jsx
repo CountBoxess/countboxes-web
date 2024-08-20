@@ -20,6 +20,14 @@ export default function Layout() {
     {
       text: 'Usuarios',
       path: '/usuarios'
+    },
+    {
+      text: 'Ordens de pedido',
+      path: '/ordens-de-pedido'
+    },
+    {
+      text: 'Cargas',
+      path: '/cargas'
     }
   ];
 
@@ -53,7 +61,7 @@ export default function Layout() {
               fontSize: 16,
               wordWrap: 'break-word'
             }}>
-            sdaadaadadsaadd@gmail.com
+            example@email.com
           </Typography>
         </Box>
       </Box>
