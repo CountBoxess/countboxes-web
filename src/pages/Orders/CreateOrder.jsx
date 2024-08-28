@@ -1,14 +1,29 @@
 import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
 import OrderForm from '../../components/forms/OrderForm';
+import { api } from '../../services/api/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateOrder() {
   const initialValues = {
     loadCode: '',
     shipping: '',
     address: '',
-    clientCode: '',
-    products: []
+    clientCode: ''
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = await api.post('/orders', values);
+
+      console.log(response);
+
+      navigate('/ordens-de-pedido');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -26,7 +41,7 @@ export default function CreateOrder() {
         sx={{
           padding: 6
         }}>
-        <OrderForm initialValues={initialValues} />
+        <OrderForm initialValues={initialValues} onSubmit={handleSubmit} />
       </Box>
     </Paper>
   );

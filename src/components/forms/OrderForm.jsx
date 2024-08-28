@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { OrderStatus } from '../../utils/enums';
-import PropTypes from 'prop-types';
 
 export const schema = Yup.object({
   loadCode: Yup.number().required('O código da carga é obrigatório.'),
@@ -16,13 +16,11 @@ export const schema = Yup.object({
     .required('O status é obrigatório.')
 });
 
-export default function OrderForm({ initialValues }) {
+export default function OrderForm({ initialValues, onSubmit }) {
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    }
+    onSubmit
   });
 
   return (
@@ -114,11 +112,14 @@ export default function OrderForm({ initialValues }) {
           Enviar
         </Button>
         <Button
-          // color="#fd3838"
           variant="contained"
           onAbort={() => formik.resetForm()}
           sx={{
-            width: '100%'
+            width: '100%',
+            backgroundColor: '#f44336',
+            ':hover': {
+              backgroundColor: '#d32f2f'
+            }
           }}>
           Cancelar
         </Button>
@@ -126,13 +127,3 @@ export default function OrderForm({ initialValues }) {
     </form>
   );
 }
-
-OrderForm.propTypes = {
-  initialValues: PropTypes.shape({
-    loadCode: PropTypes.number.isRequired,
-    shipping: PropTypes.number.isRequired,
-    address: PropTypes.string.isRequired,
-    clientCode: PropTypes.number.isRequired,
-    status: PropTypes.oneOf(Object.values(OrderStatus)).isRequired
-  }).isRequired
-};

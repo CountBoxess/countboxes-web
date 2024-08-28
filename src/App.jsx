@@ -18,23 +18,21 @@ function App() {
   const defaultTheme = createTheme();
 
   return (
-    <>
-      <ThemeProvider theme={defaultTheme}>
-        <CssBaseline />
-        <Router>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <Router>
+        <Layout>
           <Routes>
             <Route path={routes.SIGNIN} element={<SignIn />} />
-            <Route path={routes.HOME} element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path={routes.USUARIOS} element={<Users />} />
-              <Route path={routes.ORDENS_DE_PEDIDO} element={<Orders />} />
-              <Route path={routes.CARGAS} element={<Loads />} />
-              <Route path={routes.CRIAR_ORDEM_DE_PEDIDO} element={<CreateOrder />} />
-            </Route>
+            <Route path={routes.HOME} element={<Home />} />
+            <Route path={routes.USUARIOS} element={<Users />} />
+            <Route path={routes.ORDENS_DE_PEDIDO} element={<Orders />} />
+            <Route path={routes.CARGAS} element={<Loads />} />
+            <Route path={routes.CRIAR_ORDEM_DE_PEDIDO} element={<CreateOrder />} />
           </Routes>
-        </Router>
-      </ThemeProvider>
-    </>
+        </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
 
