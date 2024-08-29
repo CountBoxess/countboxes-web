@@ -13,6 +13,7 @@ import Users from './pages/Users/Users';
 import Orders from './pages/Orders/Orders';
 import Loads from './pages/Loads/Loads';
 import CreateOrder from './pages/Orders/CreateOrder';
+import Products from './pages/Products/Products';
 
 function App() {
   const defaultTheme = createTheme();
@@ -29,6 +30,7 @@ function App() {
             <Route path={routes.ORDENS_DE_PEDIDO} element={<Orders />} />
             <Route path={routes.CARGAS} element={<Loads />} />
             <Route path={routes.CRIAR_ORDEM_DE_PEDIDO} element={<CreateOrder />} />
+            <Route path={routes.PRODUTOS} element={<Products />} />
           </Routes>
         </Layout>
       </Router>
