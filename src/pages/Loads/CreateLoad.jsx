@@ -1,15 +1,13 @@
 import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
-import OrderForm from '../../components/forms/OrderForm';
+import LoadForm from '../../components/forms/LoadForm';
 import { api } from '../../services/api/api';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateOrder() {
+export default function CreateLoad() {
   const initialValues = {
-    loadCode: '',
-    shipping: '',
-    address: '',
-    clientCode: '',
+    vehicleCode: '',
+    userCode: '',
     status: ''
   };
 
@@ -17,11 +15,11 @@ export default function CreateOrder() {
 
   const handleSubmit = async (values) => {
     try {
-      const response = await api.post('/orders', values);
+      const response = await api.post('/loads', values);
 
       console.log(response);
 
-      navigate('/ordens-de-pedido');
+      navigate('/cargas');
     } catch (error) {
       console.error(error);
     }
@@ -36,13 +34,13 @@ export default function CreateOrder() {
           alignItems: 'center',
           justifyContent: 'center'
         }}>
-        <Typography variant="h4">Criar Ordem de Pedido</Typography>
+        <Typography variant="h4">Criar Carga</Typography>
       </Box>
       <Box
         sx={{
           padding: 6
         }}>
-        <OrderForm initialValues={initialValues} onSubmit={handleSubmit} />
+        <LoadForm initialValues={initialValues} onSubmit={handleSubmit} />
       </Box>
     </Paper>
   );

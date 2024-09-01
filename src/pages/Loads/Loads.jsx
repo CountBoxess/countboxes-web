@@ -8,6 +8,7 @@ import PaginatedTable from '../../components/table/PaginatedTable';
 const columns = [
   { id: 'loadCode', label: 'Código' },
   { id: 'vehicleCode', label: 'Codigo do veiculo' },
+  { id: 'userCode', label: 'Codigo do usuario' },
   { id: 'status', label: 'status' }
 ];
 
@@ -38,12 +39,12 @@ export default function Loads() {
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-        <Typography fontSize={22}>Cargas </Typography>
+        <Typography fontSize={22}>Cargas</Typography>
         <Button
           startIcon={<Add />}
           variant="contained"
-          onClick={() => navigate('/criar-ordem-de-pedido')}>
-          Criar ordem de pedido
+          onClick={() => navigate('/criar-carga')}>
+          Criar nova carga
         </Button>
       </Box>
       <PaginatedTable items={loads} columns={columns} />
