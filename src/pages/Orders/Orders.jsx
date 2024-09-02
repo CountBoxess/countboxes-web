@@ -7,7 +7,7 @@ import PaginatedTable from '../../components/table/PaginatedTable';
 
 const columns = [
   { id: 'orderCode', label: 'Código' },
-  { id: 'clientName', label: 'Nome Cliente', render: (item) => item.client.name },
+  // { id: 'clientName', label: 'Nome Cliente', render: (item) => item.client.name },
   { id: 'address', label: 'Endereço' },
   { id: 'shipping', label: 'Frete' },
   { id: 'status', label: 'Status' }
