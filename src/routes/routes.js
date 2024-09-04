@@ -5,8 +5,8 @@ const CRIAR_ORDEM_DE_PEDIDO = '/criar-ordem-de-pedido';
 const CARGAS = '/cargas';
 const CRIAR_CARGA = '/criar-carga';
 const PRODUTOS = '/produtos';
-const LOGIN = '/login';
 const SIGNIN = '/signin';
+const RECOVER_PASSWORD = '/recover-password';
 
 export default {
   HOME,
@@ -15,7 +15,7 @@ export default {
   CARGAS,
   CRIAR_CARGA,
   PRODUTOS,
-  LOGIN,
   SIGNIN,
-  CRIAR_ORDEM_DE_PEDIDO
+  CRIAR_ORDEM_DE_PEDIDO,
+  RECOVER_PASSWORD
 };
