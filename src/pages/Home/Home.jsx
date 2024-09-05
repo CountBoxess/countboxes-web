@@ -1,9 +1,9 @@
 import { Button } from '@mui/material';
 import React from 'react';
-import { useToken } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Home() {
-  const { handleLogout } = useToken();
+  const { handleLogout } = useAuth();
 
   return (
     <div>

@@ -96,10 +96,10 @@ export function AuthProvider({ children }) {
   );
 }
 
-export function useToken() {
+export function useAuth() {
   const context = useContext(TokenContext);
   if (!context) {
-    throw new Error('useToken must be used within a TokenContextProvider');
+    throw new Error('useAuth must be used within a TokenContextProvider');
   }
   return context;
 }

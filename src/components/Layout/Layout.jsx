@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Avatar,
   Box,
+  Button,
   Divider,
   Drawer,
   List,
@@ -15,10 +16,13 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import routes from '../../routes/routes';
-import { Inventory2, LocalShipping, ReceiptLong } from '@mui/icons-material';
+import { ExitToApp, Inventory2, LocalShipping, ReceiptLong } from '@mui/icons-material';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
+
+  const { handleLogout } = useAuth();
 
   const drawerList = [
     { text: 'Home', path: routes.HOME, icon: <DashboardIcon /> },
@@ -68,6 +72,17 @@ export default function Layout({ children }) {
             </Typography>
             <Typography sx={{ fontSize: 14, color: 'gray' }}>admin@gmail.com</Typography>
           </Box>
+          <Button
+            sx={{
+              marginLeft: 'auto',
+              backgroundColor: 'white',
+              color: 'gray',
+              textTransform: 'none'
+            }}
+            onClick={() => handleLogout()}>
+            <ExitToApp />
+            <Typography sx={{ fontSize: 14, color: 'gray' }}>Sair</Typography>
+          </Button>
         </Box>
       </Box>
     </Box>

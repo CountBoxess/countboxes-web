@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useToken } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import routes from '../../routes/routes';
 import * as Yup from 'yup';
 
@@ -22,12 +22,12 @@ const loginSchema = Yup.object({
 });
 
 function SignIn() {
-  const { handleLogin } = useToken();
+  const { handleLogin } = useAuth();
 
   const formik = useFormik({
     initialValues: {
-      email: 'vitorhugomelo@gmail.com',
-      password: '1234567789'
+      email: '',
+      password: ''
     },
     onSubmit: (values) => {
       handleLogin(values.email, values.password);

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
@@ -16,14 +15,14 @@ import Loads from './pages/Loads/Loads';
 import CreateOrder from './pages/Orders/CreateOrder';
 import Products from './pages/Products/Products';
 import CreateLoad from './pages/Loads/CreateLoad';
-import { AuthProvider, useToken } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import PageLoading from './components/loading/PageLoading';
 
 function App() {
   const defaultTheme = createTheme();
 
   const Private = ({ children }) => {
-    const { authenticated, loading } = useToken();
+    const { authenticated, loading } = useAuth();
 
     if (loading) return <PageLoading />;
 
@@ -35,7 +34,7 @@ function App() {
   };
 
   const Public = ({ children }) => {
-    const { authenticated, loading } = useToken();
+    const { authenticated, loading } = useAuth();
 
     if (loading) return <PageLoading />;
 
@@ -64,7 +63,9 @@ function App() {
               path={routes.HOME}
               element={
                 <Private>
-                  <Home />
+                  <Layout>
+                    <Home />
+                  </Layout>
                 </Private>
               }
             />
@@ -72,7 +73,9 @@ function App() {
               path={routes.USUARIOS}
               element={
                 <Private>
-                  <Users />
+                  <Layout>
+                    <Users />
+                  </Layout>
                 </Private>
               }
             />
@@ -80,7 +83,9 @@ function App() {
               path={routes.ORDENS_DE_PEDIDO}
               element={
                 <Private>
-                  <Orders />
+                  <Layout>
+                    <Orders />
+                  </Layout>
                 </Private>
               }
             />
@@ -88,7 +93,11 @@ function App() {
               path={routes.CARGAS}
               element={
                 <Private>
-                  <Loads />
+                  <Layout>
+                    <Layout>
+                      <Loads />
+                    </Layout>
+                  </Layout>
                 </Private>
               }
             />
@@ -96,7 +105,9 @@ function App() {
               path={routes.CRIAR_CARGA}
               element={
                 <Private>
-                  <CreateLoad />
+                  <Layout>
+                    <CreateLoad />
+                  </Layout>
                 </Private>
               }
             />
@@ -104,7 +115,9 @@ function App() {
               path={routes.CRIAR_ORDEM_DE_PEDIDO}
               element={
                 <Private>
-                  <CreateOrder />
+                  <Layout>
+                    <CreateOrder />
+                  </Layout>
                 </Private>
               }
             />
@@ -112,11 +125,20 @@ function App() {
               path={routes.PRODUTOS}
               element={
                 <Private>
-                  <Products />
+                  <Layout>
+                    <Products />
+                  </Layout>
                 </Private>
               }
             />
-            <Route path="*" element={<h1>404: NOT FOUND</h1>} />
+            <Route
+              path="*"
+              element={
+                <Public>
+                  <h1>404: NOT FOUND</h1>
+                </Public>
+              }
+            />
           </Routes>
         </AuthProvider>
       </Router>
