@@ -1,15 +1,107 @@
-import { Button } from '@mui/material';
+import { Box, Skeleton, Typography } from '@mui/material';
 import React from 'react';
-import { useAuth } from '../../context/AuthContext';
+
+const TOP_SKELETON_STYLE = {
+  flex: 1,
+  borderRadius: 2
+};
 
 export default function Home() {
-  const { handleLogout } = useAuth();
-
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Welcome to the home page!</p>
-      <Button onClick={() => handleLogout()}>Sair</Button>
-    </div>
+    <Box
+      sx={{
+        // backgroundColor: '#06d8bc66',
+        height: '100vh',
+
+        paddingX: 8,
+        paddingY: 4
+      }}>
+      <Box
+        sx={{
+          height: '10%',
+
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-start'
+        }}>
+        <Typography variant="h4" fontWeight={500}>
+          Visão Geral
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          // backgroundColor: '#d806bc66',
+
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+
+          height: '90%'
+        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 3,
+
+            flex: 1
+          }}>
+          <Skeleton variant="rectangular" height={'100%'} width={'100%'} sx={TOP_SKELETON_STYLE} />
+          <Skeleton variant="rectangular" height={'100%'} width={'100%'} sx={TOP_SKELETON_STYLE} />
+          <Skeleton variant="rectangular" height={'100%'} width={'100%'} sx={TOP_SKELETON_STYLE} />
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 3,
+
+            flex: 2
+          }}>
+          <Box
+            sx={{
+              // backgroundColor: '#00ff37',
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 2,
+              gap: 3
+            }}>
+            <Skeleton
+              variant="rectangular"
+              height={400}
+              sx={{
+                flex: 1,
+                borderRadius: 2
+              }}
+            />
+            <Skeleton
+              variant="rectangular"
+              height={400}
+              sx={{
+                flex: 1,
+                borderRadius: 2
+              }}
+            />
+          </Box>
+          <Box
+            sx={{
+              // backgroundColor: '#003cff',
+              display: 'flex',
+              flexDirection: 'row',
+              flex: 1,
+              gap: 3
+            }}>
+            <Skeleton
+              variant="rectangular"
+              height={'100%'}
+              width={'100%'}
+              sx={{
+                borderRadius: 2
+              }}
+            />
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }
