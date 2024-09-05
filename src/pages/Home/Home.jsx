@@ -18,11 +18,13 @@ export default function Home() {
       }}>
       <Box
         sx={{
-          height: '10%',
+          height: 'auto',
 
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start'
+          justifyContent: 'flex-start',
+
+          padding: '6px'
         }}>
         <Typography variant="h4" fontWeight={500}>
           Visão Geral

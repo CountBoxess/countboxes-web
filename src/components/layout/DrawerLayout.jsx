@@ -42,11 +42,26 @@ export default function DrawerLayout({ children }) {
       }}
       role="presentation">
       <Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }}>
-          <Avatar
-            src="https://static.generated.photos/vue-static/face-generator/landing/wall/14.jpg"
-            sx={{ width: 60, height: 60, marginTop: 1, marginBottom: 3 }}
-          />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: 4,
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+          <Typography variant="h4" fontWeight={700}>
+            COUNT
+          </Typography>
+          <Typography
+            variant="h4"
+            fontWeight={700}
+            sx={{
+              letterSpacing: 4,
+              marginLeft: 0.6
+            }}>
+            BOXES
+          </Typography>
         </Box>
         <List>
           {drawerList.map((route) => (
