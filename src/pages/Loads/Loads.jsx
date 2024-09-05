@@ -31,7 +31,11 @@ export default function Loads() {
   }, []);
 
   return (
-    <Paper>
+    <Paper
+      sx={{
+        marginX: 12,
+        marginY: 8
+      }}>
       <Box
         sx={{
           padding: 2,
@@ -43,8 +47,8 @@ export default function Loads() {
         <Button
           startIcon={<Add />}
           variant="contained"
-          onClick={() => navigate('/criar-carga')}>
-          Criar nova carga
+          onClick={() => navigate('/criar-ordem-de-pedido')}>
+          Criar Carga
         </Button>
       </Box>
       <PaginatedTable items={loads} columns={columns} />

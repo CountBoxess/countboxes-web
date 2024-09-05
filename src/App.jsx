@@ -5,8 +5,6 @@ import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import routes from './routes/routes';
 
-import Layout from './components/Layout/Layout';
-
 import Home from './pages/Home/Home';
 import SignIn from './pages/SignIn/SignIn';
 import Users from './pages/Users/Users';
@@ -17,6 +15,7 @@ import Products from './pages/Products/Products';
 import CreateLoad from './pages/Loads/CreateLoad';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import PageLoading from './components/loading/PageLoading';
+import DrawerLayout from './components/layout/DrawerLayout';
 
 function App() {
   const defaultTheme = createTheme();
@@ -63,9 +62,9 @@ function App() {
               path={routes.HOME}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Home />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
@@ -73,9 +72,9 @@ function App() {
               path={routes.USUARIOS}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Users />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
@@ -83,9 +82,9 @@ function App() {
               path={routes.ORDENS_DE_PEDIDO}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Orders />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
@@ -93,11 +92,9 @@ function App() {
               path={routes.CARGAS}
               element={
                 <Private>
-                  <Layout>
-                    <Layout>
-                      <Loads />
-                    </Layout>
-                  </Layout>
+                  <DrawerLayout>
+                    <Loads />
+                  </DrawerLayout>
                 </Private>
               }
             />
@@ -105,9 +102,9 @@ function App() {
               path={routes.CRIAR_CARGA}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <CreateLoad />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
@@ -115,9 +112,9 @@ function App() {
               path={routes.CRIAR_ORDEM_DE_PEDIDO}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <CreateOrder />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
@@ -125,9 +122,9 @@ function App() {
               path={routes.PRODUTOS}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Products />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />

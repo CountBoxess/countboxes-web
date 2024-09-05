@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Avatar,
@@ -13,13 +14,12 @@ import {
   Typography
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import routes from '../../routes/routes';
 import { ExitToApp, Inventory2, LocalShipping, ReceiptLong } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 
-export default function Layout({ children }) {
+export default function DrawerLayout({ children }) {
   const navigate = useNavigate();
 
   const { handleLogout } = useAuth();
@@ -108,7 +108,3 @@ export default function Layout({ children }) {
     </Box>
   );
 }
-
-Layout.propTypes = {
-  children: PropTypes.node
-};

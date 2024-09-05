@@ -1,5 +1,8 @@
 import React from 'react';
 import PaginatedTable from '../../components/table/PaginatedTable';
+import { Box, Button, Paper, Typography } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const items = [
   { id: 1, name: 'Product 1', price: 100 },
@@ -15,10 +18,30 @@ const columns = [
 ];
 
 export default function Products() {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <h1>Products</h1>
+    <Paper
+      sx={{
+        marginX: 12,
+        marginY: 8
+      }}>
+      <Box
+        sx={{
+          padding: 2,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+        <Typography fontSize={22}>Products</Typography>
+        <Button
+          startIcon={<Add />}
+          variant="contained"
+          onClick={() => navigate('/criar-ordem-de-pedido')}>
+          Criar ordem de pedido
+        </Button>
+      </Box>
       <PaginatedTable items={items} columns={columns} />
-    </div>
+    </Paper>
   );
 }

@@ -32,7 +32,11 @@ export default function Orders() {
   }, []);
 
   return (
-    <Paper>
+    <Paper
+      sx={{
+        marginX: 12,
+        marginY: 8
+      }}>
       <Box
         sx={{
           padding: 2,
