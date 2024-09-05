@@ -65,7 +65,7 @@ export default function Home() {
               // backgroundColor: '#00ff37',
               display: 'flex',
               flexDirection: 'column',
-              flex: 2,
+              flex: 6,
               gap: 3
             }}>
             <Skeleton
@@ -90,7 +90,7 @@ export default function Home() {
               // backgroundColor: '#003cff',
               display: 'flex',
               flexDirection: 'row',
-              flex: 1,
+              flex: 4,
               gap: 3
             }}>
             <Skeleton

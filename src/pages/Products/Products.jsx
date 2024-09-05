@@ -33,12 +33,12 @@ export default function Products() {
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-        <Typography fontSize={22}>Products</Typography>
+        <Typography fontSize={22}>Produtos</Typography>
         <Button
           startIcon={<Add />}
           variant="contained"
           onClick={() => navigate('/criar-ordem-de-pedido')}>
-          Criar ordem de pedido
+          Criar produto
         </Button>
       </Box>
       <PaginatedTable items={items} columns={columns} />
