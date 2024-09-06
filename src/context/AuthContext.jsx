@@ -31,8 +31,6 @@ export function AuthProvider({ children }) {
   };
 
   const handleLogin = async (email, password) => {
-    setLoading(true);
-
     try {
       const { data } = await createSession(email, password);
 
@@ -54,8 +52,6 @@ export function AuthProvider({ children }) {
         message: error.response.data.description,
         type: 'error'
       });
-
-      setLoading(false);
     }
   };
 
