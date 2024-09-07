@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
@@ -50,6 +51,8 @@ export const schema = Yup.object({
 });
 
 export default function ClientForm({ initialValues, onSubmit }) {
+  const navigate = useNavigate();
+  
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -206,7 +209,10 @@ export default function ClientForm({ initialValues, onSubmit }) {
         </Button>
         <Button
           variant="contained"
-          onAbort={() => formik.resetForm()}
+          onClick={() => {
+            formik.resetForm();
+            navigate('/clientes');
+          }}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',

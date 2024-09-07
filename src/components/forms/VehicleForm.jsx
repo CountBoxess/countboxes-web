@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import validatePlate from '../../utils/validatePlate';
+import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
     plate: Yup
@@ -21,6 +22,8 @@ export const schema = Yup.object({
 });
 
 export default function VehicleForm({ initialValues, onSubmit }) {
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -85,7 +88,10 @@ export default function VehicleForm({ initialValues, onSubmit }) {
         </Button>
         <Button
           variant="contained"
-          onAbort={() => formik.resetForm()}
+          onClick={() => {
+            formik.resetForm();
+            navigate('/veiculos');
+          }}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
