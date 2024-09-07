@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  Avatar,
   Box,
   Button,
   Divider,
@@ -22,7 +21,7 @@ import { useAuth } from '../../context/AuthContext';
 export default function DrawerLayout({ children }) {
   const navigate = useNavigate();
 
-  const { handleLogout } = useAuth();
+  const { handleLogout, user } = useAuth();
 
   const drawerList = [
     { text: 'Home', path: routes.HOME, icon: <DashboardIcon /> },
@@ -78,15 +77,11 @@ export default function DrawerLayout({ children }) {
       <Box sx={{ p: 2 }}>
         <Divider />
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-          <Avatar
-            src="https://static.generated.photos/vue-static/face-generator/landing/wall/14.jpg"
-            sx={{ width: 40, height: 40, marginRight: 2 }}
-          />
           <Box>
             <Typography sx={{ fontSize: 16, fontWeight: 'bold', maxWidth: 150 }} noWrap>
-              Andrew D.
+              Olá, {user.name}
             </Typography>
-            <Typography sx={{ fontSize: 14, color: 'gray' }}>admin@gmail.com</Typography>
+            <Typography sx={{ fontSize: 14, color: 'gray' }}>{user.email}</Typography>
           </Box>
           <Button
             sx={{

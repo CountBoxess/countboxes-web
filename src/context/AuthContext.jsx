@@ -34,14 +34,10 @@ export function AuthProvider({ children }) {
     try {
       const { data } = await createSession(email, password);
 
-      console.log(data);
+      const decodedToken = decodeToken(data.token);
 
-      const loggedUser = decodeToken(data.token);
-
-      console.log(loggedUser);
-
-      if (loggedUser) {
-        setUser(loggedUser);
+      if (decodedToken.user) {
+        setUser(decodedToken.user);
         localStorage.setItem('token', data.token);
         api.defaults.headers.authorization = `Bearer ${data.token}`;
       }
@@ -67,10 +63,10 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem('token');
 
     if (token) {
-      const loggedUser = decodeToken(token);
+      const decodedToken = decodeToken(token);
 
-      if (loggedUser) {
-        setUser(loggedUser);
+      if (decodedToken) {
+        setUser(decodedToken.user);
         api.defaults.headers.authorization = `Bearer ${token}`;
       }
     }

@@ -4,7 +4,6 @@ import { useAuth } from '../../context/AuthContext';
 import * as Yup from 'yup';
 
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -49,28 +48,20 @@ function SignIn() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}>
-      <CssBaseline />
       <Box
         sx={{
           padding: '16px',
 
-          // background: rgba( 255, 255, 255, 0.25 );
-          // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-          // backdrop-filter: blur( 8px );
-          // -webkit-backdrop-filter: blur( 8px );
-          // border-radius: 10px;
-          // border: 1px solid rgba( 255, 255, 255, 0.18 );
+          background: 'rgb(255, 255, 255)',
+          borderRadius: '14px 0px',
 
-          background: 'rgb(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderRadius: '10px'
+          margin: '16px'
         }}>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            padding: 4,
+            padding: 2,
             alignItems: 'center',
             justifyContent: 'center'
           }}>
