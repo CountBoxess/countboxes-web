@@ -4,10 +4,10 @@ import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';
+import ProductModal from '../../../components/modal/productModal';
 
 const columns = [
   { id: 'orderCode', label: 'Código' },
-  // { id: 'clientName', label: 'Nome Cliente', render: (item) => item.client.name },
   { id: 'address', label: 'Endereço' },
   { id: 'shipping', label: 'Frete' },
   { id: 'status', label: 'Status' }
@@ -17,6 +17,15 @@ export default function Orders() {
   const navigate = useNavigate();
 
   const [orders, setOrders] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedOrder, setSelectedOrder] = React.useState('')
+
+  const handleOpenModal = (orderId) => {
+    setSelectedOrder(orderId)
+
+    setOpen(true)
+  }
 
   const fetchOrders = async () => {
     try {
@@ -32,6 +41,8 @@ export default function Orders() {
   }, []);
 
   return (
+    <>
+    <ProductModal open={open} orderId={selectedOrder} handleClose={() => setOpen(false)}/>
     <Paper
       sx={{
         marginX: 12,
@@ -52,7 +63,8 @@ export default function Orders() {
           Criar ordem de pedido
         </Button>
       </Box>
-      <PaginatedTable items={orders} columns={columns} />
+      <PaginatedTable items={orders} columns={columns} onRowClick={handleOpenModal}/>
     </Paper>
+    </>
   );
 }
