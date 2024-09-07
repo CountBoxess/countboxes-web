@@ -14,8 +14,8 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import routes from '../../routes/routes';
-import { ExitToApp, Inventory2, LocalShipping, ReceiptLong, Garage} from '@mui/icons-material';
+import routes from '../../routes/privateRoutes';
+import { ExitToApp, Inventory2, LocalShipping, ReceiptLong, Garage } from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 
 export default function DrawerLayout({ children }) {
