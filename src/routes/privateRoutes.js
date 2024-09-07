@@ -5,6 +5,7 @@ const CRIAR_ORDEM_DE_PEDIDO = '/criar-ordem-de-pedido';
 const CARGAS = '/cargas';
 const CRIAR_CARGA = '/criar-carga';
 const PRODUTOS = '/produtos';
+const CRIAR_PRODUTO = '/criar-produto';
 const RECOVER_PASSWORD = '/recover-password';
 const VEICULOS = '/veiculos';
 const CRIAR_VEICULO = '/criar-veiculo';
@@ -23,5 +24,6 @@ export default {
   VEICULOS,
   CRIAR_VEICULO,
   CLIENTES,
-  CRIAR_CLIENTE
+  CRIAR_CLIENTE,
+  CRIAR_PRODUTO
 };

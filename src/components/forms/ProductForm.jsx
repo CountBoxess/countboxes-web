@@ -7,18 +7,27 @@ import validatePlate from '../../utils/validatePlate';
 import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
-    plate: Yup
-    .string()
-    .required('Placa é obrigatória')
-    .test('validate-plate', 'Placa Inválida', value => validatePlate(value)),
+  productCode:
+  Yup.number()
+      .required('Código do Produto é obrigatório'),
 
-  model: Yup
-    .string()
-    .required('Modelo é obrigatório'),
+description:
+  Yup.string()
+      .optional(),
 
-  type: Yup
-    .string()
-    .required('Tipo é obrigatório'),
+
+grossWeight:
+  Yup.number()
+      .required('Peso Bruto é obrigatório'),
+
+netWeight:
+  Yup.number()
+      .required('Peso Líquido é obrigatório'),
+
+
+unit:
+  Yup.string()
+      .required('Unidade é obrigatório'),
 });
 
 export default function ProductForm({ initialValues, onSubmit }) {
@@ -35,39 +44,65 @@ export default function ProductForm({ initialValues, onSubmit }) {
       <Box mb={2}>
         <TextField
           fullWidth
-          id="plate"
-          name="plate"
-          label="Placa"
+          id="productCode"
+          name="productCode"
+          label="Código do Produto"
           onChange={formik.handleChange}
-          value={formik.values.plate}
-          error={formik.touched.plate && Boolean(formik.errors.plate)}
-          helperText={formik.touched.plate && formik.errors.plate}
+          value={formik.values.productCode}
+          error={formik.touched.productCode && Boolean(formik.errors.productCode)}
+          helperText={formik.touched.productCode && formik.errors.productCode}
           variant="outlined"
         />
       </Box>
       <Box mb={2}>
         <TextField
           fullWidth
-          id="model"
-          name="model"
-          label="Modelo"
+          id="description"
+          name="description"
+          label="Descrição"
           onChange={formik.handleChange}
-          value={formik.values.model}
-          error={formik.touched.model && Boolean(formik.errors.model)}
-          helperText={formik.touched.model && formik.errors.model}
+          value={formik.values.description}
+          error={formik.touched.description && Boolean(formik.errors.description)}
+          helperText={formik.touched.description && formik.errors.description}
           variant="outlined"
         />
       </Box>
       <Box mb={2}>
       <TextField
           fullWidth
-          id="type"
-          name="type"
-          label="Tipo"
+          id="grossWeight"
+          name="grossWeight"
+          label="Peso bruto"
           onChange={formik.handleChange}
-          value={formik.values.type}
-          error={formik.touched.type && Boolean(formik.errors.type)}
-          helperText={formik.touched.type && formik.errors.type}
+          value={formik.values.grossWeight}
+          error={formik.touched.grossWeight && Boolean(formik.errors.grossWeight)}
+          helperText={formik.touched.grossWeight && formik.errors.grossWeight}
+          variant="outlined"
+        />
+      </Box>
+      <Box mb={2}>
+      <TextField
+          fullWidth
+          id="netWeight"
+          name="netWeight"
+          label="Peso liquido"
+          onChange={formik.handleChange}
+          value={formik.values.netWeight}
+          error={formik.touched.netWeight && Boolean(formik.errors.netWeight)}
+          helperText={formik.touched.netWeight && formik.errors.netWeight}
+          variant="outlined"
+        />
+      </Box>
+      <Box mb={2}>
+      <TextField
+          fullWidth
+          id="unit"
+          name="unit"
+          label="Unidade"
+          onChange={formik.handleChange}
+          value={formik.values.unit}
+          error={formik.touched.unit && Boolean(formik.errors.unit)}
+          helperText={formik.touched.unit && formik.errors.unit}
           variant="outlined"
         />
       </Box>
@@ -90,7 +125,7 @@ export default function ProductForm({ initialValues, onSubmit }) {
           variant="contained"
           onClick={() => {
             formik.resetForm();
-            navigate('/veiculos');
+            navigate('/produtos');
           }}
           sx={{
             width: '100%',

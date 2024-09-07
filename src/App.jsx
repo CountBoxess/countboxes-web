@@ -24,6 +24,7 @@ import {
 } from './pages/ADMIN';
 
 import { SignIn } from './pages/PUBLIC';
+import CreateProduct from './pages/ADMIN/Products/CreateProduct';
 
 function App() {
   const defaultTheme = createTheme();
@@ -194,6 +195,16 @@ function App() {
                 <Private>
                   <DrawerLayout>
                     <CreateClient />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_PRODUTO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateProduct />
                   </DrawerLayout>
                 </Private>
               }
