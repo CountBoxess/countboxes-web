@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { OrderStatus } from '../../utils/enums';
+import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
   loadCode: Yup.number().required('O código da carga é obrigatório.'),
@@ -17,6 +18,8 @@ export const schema = Yup.object({
 });
 
 export default function OrderForm({ initialValues, onSubmit }) {
+  const navigate = useNavigate()
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -113,7 +116,10 @@ export default function OrderForm({ initialValues, onSubmit }) {
         </Button>
         <Button
           variant="contained"
-          onAbort={() => formik.resetForm()}
+          onClick={() => {
+            formik.resetForm();
+            navigate('/ordens-de-pedido');
+          }}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',

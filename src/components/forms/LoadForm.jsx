@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { LoadStatus } from '../../utils/enums';
+import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
   vehicleCode: Yup
@@ -21,6 +22,8 @@ export const schema = Yup.object({
 });
 
 export default function LoadForm({ initialValues, onSubmit }) {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -90,7 +93,10 @@ export default function LoadForm({ initialValues, onSubmit }) {
         </Button>
         <Button
           variant="contained"
-          onAbort={() => formik.resetForm()}
+          onClick={() => {
+            formik.resetForm();
+            navigate('/cargas');
+          }} 
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
