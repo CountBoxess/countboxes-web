@@ -1,24 +1,40 @@
-import React from 'react';
 import PaginatedTable from '../../../components/table/PaginatedTable';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-
-const items = [
-  { id: 1, name: 'Product 1', price: 100 },
-  { id: 2, name: 'Product 2', price: 200 },
-  { id: 3, name: 'Product 3', price: 300 },
-  { id: 4, name: 'Product 4', price: 400 },
-  { id: 5, name: 'Product 5', price: 500 }
-];
+import { api } from '../../../services/api/api';
+import React, { useEffect, useState } from 'react';
 
 const columns = [
-  { id: 'name', label: 'Name' },
-  { id: 'price', label: 'Price' }
+  { id: 'productCode', label: 'Código' },
+  { id: 'description', label: 'Descrição' },
+  { id: 'grossWeight', label: 'Peso Bruto' },
+  { id: 'netWeight', label: 'Peso Liquido' },
+  { id: 'unit', label: 'Unidade' }
 ];
+
+// const columns = [
+//   { id: 'name', label: 'Name' },
+//   { id: 'price', label: 'Price' }
+// ];
 
 export default function Products() {
   const navigate = useNavigate();
+
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await api.get('/products');
+      setProducts(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <Paper
@@ -37,11 +53,11 @@ export default function Products() {
         <Button
           startIcon={<Add />}
           variant="contained"
-          onClick={() => navigate('/criar-ordem-de-pedido')}>
+          onClick={() => navigate('/criar-produto')}>
           Criar produto
         </Button>
       </Box>
-      <PaginatedTable items={items} columns={columns} />
+      <PaginatedTable items={products} columns={columns} />
     </Paper>
   );
 }
