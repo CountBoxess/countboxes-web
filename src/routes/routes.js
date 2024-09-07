@@ -7,6 +7,8 @@ const CRIAR_CARGA = '/criar-carga';
 const PRODUTOS = '/produtos';
 const SIGNIN = '/signin';
 const RECOVER_PASSWORD = '/recover-password';
+const VEICULOS = '/veiculos';
+const CRIAR_VEICULO = '/criar-veiculo';
 
 export default {
   HOME,
@@ -17,5 +19,7 @@ export default {
   PRODUTOS,
   SIGNIN,
   CRIAR_ORDEM_DE_PEDIDO,
-  RECOVER_PASSWORD
+  RECOVER_PASSWORD,
+  VEICULOS,
+  CRIAR_VEICULO
 };
