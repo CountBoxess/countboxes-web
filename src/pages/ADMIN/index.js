@@ -7,5 +7,7 @@ import Products from './Products/Products';
 import Users from './Users/Users';
 import Vehicles from './Vehicles/Vehicles';
 import CreateVehicle from './Vehicles/CreateVehicle';
+import Clients from './Clients/Clients';
+import CreateClient from './Clients/CreateClient';
 
-export { Loads, Home, Users, Orders, CreateLoad, CreateOrder, Products, Vehicles, CreateVehicle };
+export { Loads, Home, Users, Orders, CreateLoad, CreateOrder, Products, Vehicles, CreateVehicle, Clients, CreateClient};

@@ -8,6 +8,8 @@ const PRODUTOS = '/produtos';
 const RECOVER_PASSWORD = '/recover-password';
 const VEICULOS = '/veiculos';
 const CRIAR_VEICULO = '/criar-veiculo';
+const CLIENTES = '/clientes';
+const CRIAR_CLIENTE = '/criar-cliente';
 
 export default {
   HOME,
@@ -19,5 +21,7 @@ export default {
   CRIAR_ORDEM_DE_PEDIDO,
   RECOVER_PASSWORD,
   VEICULOS,
-  CRIAR_VEICULO
+  CRIAR_VEICULO,
+  CLIENTES,
+  CRIAR_CLIENTE
 };
