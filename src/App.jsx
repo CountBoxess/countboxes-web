@@ -13,12 +13,14 @@ import {
   CreateLoad,
   CreateOrder,
   CreateVehicle,
+  CreateClient,
   Home,
   Loads,
   Orders,
   Products,
   Users,
-  Vehicles
+  Vehicles,
+  Clients,
 } from './pages/ADMIN';
 
 import { SignIn } from './pages/PUBLIC';
@@ -172,6 +174,26 @@ function App() {
                 <Private>
                   <DrawerLayout>
                     <CreateVehicle />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CLIENTES}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <Clients />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_CLIENTE}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateClient />
                   </DrawerLayout>
                 </Private>
               }

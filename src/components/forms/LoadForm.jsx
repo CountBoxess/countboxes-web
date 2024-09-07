@@ -7,11 +7,11 @@ import { LoadStatus } from '../../utils/enums';
 
 export const schema = Yup.object({
   vehicleCode: Yup
-    .number('O código do veículo deve ser um número')
+    .number()
     .required('O código do veículo é obrigatório.'),
 
   userCode: Yup
-    .number('O código do usuário deve ser um número')
+    .number()
     .required('O código do usuário é obrigatório.'),
 
   status: Yup.string()

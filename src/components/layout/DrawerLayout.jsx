@@ -15,7 +15,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import routes from '../../routes/privateRoutes';
-import { ExitToApp, Inventory2, LocalShipping, ReceiptLong, Garage } from '@mui/icons-material';
+import { ExitToApp, Inventory2, LocalShipping, ReceiptLong, Garage, Groups} from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
 
 export default function DrawerLayout({ children }) {
@@ -28,7 +28,8 @@ export default function DrawerLayout({ children }) {
     { text: 'Pedidos', path: routes.ORDENS_DE_PEDIDO, icon: <ReceiptLong /> },
     { text: 'Cargas', path: routes.CARGAS, icon: <LocalShipping /> },
     { text: 'Produtos', path: routes.PRODUTOS, icon: <Inventory2 /> },
-    { text: 'Veículos', path: routes.VEICULOS, icon: <Garage /> }
+    { text: 'Veículos', path: routes.VEICULOS, icon: <Garage /> },
+    { text: 'Clientes', path: routes.CLIENTES, icon: <Groups /> }
   ];
 
   const DrawerList = (
