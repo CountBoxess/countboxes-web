@@ -5,7 +5,6 @@ const CRIAR_ORDEM_DE_PEDIDO = '/criar-ordem-de-pedido';
 const CARGAS = '/cargas';
 const CRIAR_CARGA = '/criar-carga';
 const PRODUTOS = '/produtos';
-const SIGNIN = '/signin';
 const RECOVER_PASSWORD = '/recover-password';
 const VEICULOS = '/veiculos';
 const CRIAR_VEICULO = '/criar-veiculo';
@@ -17,7 +16,6 @@ export default {
   CARGAS,
   CRIAR_CARGA,
   PRODUTOS,
-  SIGNIN,
   CRIAR_ORDEM_DE_PEDIDO,
   RECOVER_PASSWORD,
   VEICULOS,

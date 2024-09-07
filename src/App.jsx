@@ -3,11 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
-import routes from './routes/routes';
-
-import Home from './pages/Home/Home';
+import Home from './pages/ADMIN/Home/Home';
 import SignIn from './pages/SignIn/SignIn';
-import Users from './pages/Users/Users';
+import Users from './pages/ADMIN/Users/Users';
 import Orders from './pages/Orders/Orders';
 import Loads from './pages/Loads/Loads';
 import CreateOrder from './pages/Orders/CreateOrder';
@@ -18,29 +16,54 @@ import PageLoading from './components/loading/PageLoading';
 import DrawerLayout from './components/layout/DrawerLayout';
 import Vehicles from './pages/Vehicles/Vehicles';
 import CreateVehicle from './pages/Vehicles/CreateVehicle';
+import privateRoutes from './routes/privateRoutes';
+import publicRoutes from './routes/publicRoutes';
+import workerRoutes from './routes/workerRoutes';
 
 function App() {
   const defaultTheme = createTheme();
 
   const Private = ({ children }) => {
+    const { authenticated, loading, user } = useAuth();
+
+    if (loading) return <PageLoading />;
+
+    if (!authenticated) {
+      return <Navigate to={privateRoutes.SIGNIN} />;
+    }
+
+    console.log(user);
+
+    if (user.type != 'ADMIN') {
+      return <Navigate to={privateRoutes.ORDENS_DE_PEDIDO} />;
+    }
+
+    return children;
+  };
+
+  const Worker = ({ children }) => {
     const { authenticated, loading } = useAuth();
 
     if (loading) return <PageLoading />;
 
     if (!authenticated) {
-      return <Navigate to={routes.SIGNIN} />;
+      return <Navigate to={privateRoutes.SIGNIN} />;
     }
 
     return children;
   };
 
   const Public = ({ children }) => {
-    const { authenticated, loading } = useAuth();
+    const { authenticated, loading, user } = useAuth();
 
     if (loading) return <PageLoading />;
 
     if (authenticated) {
-      return <Navigate to={routes.HOME} />;
+      if (user.type === 'ADMIN') {
+        return <Navigate to={privateRoutes.HOME} />;
+      } else {
+        return <Navigate to={privateRoutes.ORDENS_DE_PEDIDO} />;
+      }
     }
 
     return children;
@@ -53,7 +76,7 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route
-              path={routes.SIGNIN}
+              path={publicRoutes.SIGNIN}
               element={
                 <Public>
                   <SignIn />
@@ -61,7 +84,7 @@ function App() {
               }
             />
             <Route
-              path={routes.HOME}
+              path={privateRoutes.HOME}
               element={
                 <Private>
                   <DrawerLayout>
@@ -71,7 +94,7 @@ function App() {
               }
             />
             <Route
-              path={routes.USUARIOS}
+              path={privateRoutes.USUARIOS}
               element={
                 <Private>
                   <DrawerLayout>
@@ -81,7 +104,7 @@ function App() {
               }
             />
             <Route
-              path={routes.ORDENS_DE_PEDIDO}
+              path={privateRoutes.ORDENS_DE_PEDIDO}
               element={
                 <Private>
                   <DrawerLayout>
@@ -91,7 +114,7 @@ function App() {
               }
             />
             <Route
-              path={routes.CARGAS}
+              path={privateRoutes.CARGAS}
               element={
                 <Private>
                   <DrawerLayout>
@@ -101,7 +124,7 @@ function App() {
               }
             />
             <Route
-              path={routes.CRIAR_CARGA}
+              path={privateRoutes.CRIAR_CARGA}
               element={
                 <Private>
                   <DrawerLayout>
@@ -111,7 +134,7 @@ function App() {
               }
             />
             <Route
-              path={routes.CRIAR_ORDEM_DE_PEDIDO}
+              path={privateRoutes.CRIAR_ORDEM_DE_PEDIDO}
               element={
                 <Private>
                   <DrawerLayout>
@@ -121,7 +144,7 @@ function App() {
               }
             />
             <Route
-              path={routes.PRODUTOS}
+              path={privateRoutes.PRODUTOS}
               element={
                 <Private>
                   <DrawerLayout>
@@ -131,7 +154,7 @@ function App() {
               }
             />
             <Route
-              path={routes.VEICULOS}
+              path={privateRoutes.VEICULOS}
               element={
                 <Private>
                   <DrawerLayout>
@@ -141,13 +164,23 @@ function App() {
               }
             />
             <Route
-              path={routes.CRIAR_VEICULO}
+              path={privateRoutes.CRIAR_VEICULO}
               element={
                 <Private>
                   <DrawerLayout>
                     <CreateVehicle />
                   </DrawerLayout>
                 </Private>
+              }
+            />
+            <Route
+              path={workerRoutes.HOME}
+              element={
+                <Worker>
+                  <DrawerLayout>
+                    <Orders />
+                  </DrawerLayout>
+                </Worker>
               }
             />
             <Route
