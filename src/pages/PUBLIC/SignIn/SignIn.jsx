@@ -1,6 +1,5 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { useAuth } from '../../context/AuthContext';
 import * as Yup from 'yup';
 
 import Button from '@mui/material/Button';
@@ -9,7 +8,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import backgroundImage from '../../assets/images/loginBackground.jpg';
+// import backgroundImage from '../../../../src/assets/images/loginBackground.jpg';
+
+import { useAuth } from '../../../context/AuthContext';
 
 const loginSchema = Yup.object({
   email: Yup.string().email('Insira um email válido.').required('Insira um email.'),
@@ -43,7 +44,7 @@ function SignIn() {
         justifyContent: 'center',
         alignItems: 'center',
 
-        backgroundImage: `url(${backgroundImage})`,
+        // backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
