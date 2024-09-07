@@ -16,6 +16,8 @@ import CreateLoad from './pages/Loads/CreateLoad';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import PageLoading from './components/loading/PageLoading';
 import DrawerLayout from './components/layout/DrawerLayout';
+import Vehicles from './pages/Vehicles/Vehicles';
+import CreateVehicle from './pages/Vehicles/CreateVehicle';
 
 function App() {
   const defaultTheme = createTheme();
@@ -124,6 +126,26 @@ function App() {
                 <Private>
                   <DrawerLayout>
                     <Products />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={routes.VEICULOS}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <Vehicles />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={routes.CRIAR_VEICULO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateVehicle />
                   </DrawerLayout>
                 </Private>
               }
