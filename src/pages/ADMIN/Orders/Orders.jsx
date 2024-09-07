@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../services/api/api';
-import PaginatedTable from '../../components/table/PaginatedTable';
+import { api } from '../../../services/api/api';
+import PaginatedTable from '../../../components/table/PaginatedTable';
 
 const columns = [
   { id: 'orderCode', label: 'Código' },

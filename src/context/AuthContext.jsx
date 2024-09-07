@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -5,6 +6,7 @@ import routes from '../routes/privateRoutes';
 import { api, createSession } from '../services/api/api';
 import { jwtDecode } from 'jwt-decode';
 import { showAlert } from '../utils/showAlert';
+import publicRoutes from '../routes/publicRoutes';
 
 export const TokenContext = createContext();
 
@@ -65,7 +67,7 @@ export function AuthProvider({ children }) {
     api.defaults.headers.authorization = null;
 
     setUser(null);
-    navigate(routes.LOGIN);
+    navigate(publicRoutes.SIGNIN);
   };
 
   useEffect(() => {

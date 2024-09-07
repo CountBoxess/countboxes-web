@@ -3,22 +3,25 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
-import Home from './pages/ADMIN/Home/Home';
-import SignIn from './pages/SignIn/SignIn';
-import Users from './pages/ADMIN/Users/Users';
-import Orders from './pages/Orders/Orders';
-import Loads from './pages/Loads/Loads';
-import CreateOrder from './pages/Orders/CreateOrder';
-import Products from './pages/Products/Products';
-import CreateLoad from './pages/Loads/CreateLoad';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import PageLoading from './components/loading/PageLoading';
 import DrawerLayout from './components/layout/DrawerLayout';
-import Vehicles from './pages/Vehicles/Vehicles';
-import CreateVehicle from './pages/Vehicles/CreateVehicle';
 import privateRoutes from './routes/privateRoutes';
 import publicRoutes from './routes/publicRoutes';
 import workerRoutes from './routes/workerRoutes';
+import {
+  CreateLoad,
+  CreateOrder,
+  CreateVehicle,
+  Home,
+  Loads,
+  Orders,
+  Products,
+  Users,
+  Vehicles
+} from './pages/ADMIN';
+
+import { SignIn } from './pages/PUBLIC';
 
 function App() {
   const defaultTheme = createTheme();
@@ -29,7 +32,7 @@ function App() {
     if (loading) return <PageLoading />;
 
     if (!authenticated) {
-      return <Navigate to={privateRoutes.SIGNIN} />;
+      return <Navigate to={publicRoutes.SIGNIN} />;
     }
 
     console.log(user);

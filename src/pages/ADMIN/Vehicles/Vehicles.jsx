@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../services/api/api';
-import PaginatedTable from '../../components/table/PaginatedTable';
+import { api } from '../../../services/api/api';
+import PaginatedTable from '../../../components/table/PaginatedTable';
 
 const columns = [
   { id: 'plate', label: 'Placa' },
@@ -43,10 +43,7 @@ export default function Vehicles() {
           justifyContent: 'space-between'
         }}>
         <Typography fontSize={22}>Veículos</Typography>
-        <Button
-          startIcon={<Add />}
-          variant="contained"
-          onClick={() => navigate('/criar-veiculo')}>
+        <Button startIcon={<Add />} variant="contained" onClick={() => navigate('/criar-veiculo')}>
           Criar veículo
         </Button>
       </Box>

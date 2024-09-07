@@ -1,7 +1,7 @@
 import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
-import LoadForm from '../../components/forms/LoadForm';
-import { api } from '../../services/api/api';
+import LoadForm from '../../../components/forms/LoadForm';
+import { api } from '../../../services/api/api';
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateLoad() {

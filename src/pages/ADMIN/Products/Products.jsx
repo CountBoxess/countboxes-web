@@ -1,5 +1,5 @@
 import React from 'react';
-import PaginatedTable from '../../components/table/PaginatedTable';
+import PaginatedTable from '../../../components/table/PaginatedTable';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
