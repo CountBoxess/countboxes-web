@@ -2,20 +2,20 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import validatePlate from '../../utils/validatePlate';
 
-export const schema = yup.object({
-    plate: yup
+export const schema = Yup.object({
+    plate: Yup
     .string()
     .required('Placa é obrigatória')
     .test('validate-plate', 'Placa Inválida', value => validatePlate(value)),
 
-  model: yup
+  model: Yup
     .string()
     .required('Modelo é obrigatório'),
 
-  type: yup
+  type: Yup
     .string()
     .required('Tipo é obrigatório'),
 });
