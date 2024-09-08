@@ -50,7 +50,7 @@ export const schema = Yup.object({
     .required('O CEP é obrigatório')
 });
 
-export default function ClientForm({ initialValues, onSubmit }) {
+export default function ClientForm({ initialValues, onSubmit, isCNPJReadOnly, isModal}) {
   const navigate = useNavigate();
   
   const formik = useFormik({
@@ -85,6 +85,9 @@ export default function ClientForm({ initialValues, onSubmit }) {
           error={formik.touched.CNPJ && Boolean(formik.errors.CNPJ)}
           helperText={formik.touched.CNPJ && formik.errors.CNPJ}
           variant="outlined"
+          InputProps={{
+            readOnly: isCNPJReadOnly,
+          }}
         />
       </Box>
       <Box mb={2}>
@@ -207,21 +210,21 @@ export default function ClientForm({ initialValues, onSubmit }) {
           }}>
           Enviar
         </Button>
-        <Button
+        {!isModal && (
+          <Button
           variant="contained"
-          onClick={() => {
-            formik.resetForm();
-            navigate('/clientes');
-          }}
+          onClick={() => navigate('/clientes')}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
             ':hover': {
               backgroundColor: '#d32f2f'
             }
-          }}>
+          }}
+          >
           Cancelar
         </Button>
+        )}
       </Box>
     </form>
   );
