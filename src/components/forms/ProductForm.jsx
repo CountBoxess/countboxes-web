@@ -3,7 +3,6 @@ import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import validatePlate from '../../utils/validatePlate';
 import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
@@ -41,19 +40,6 @@ export default function ProductForm({ initialValues, onSubmit }) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box mb={2}>
-        <TextField
-          fullWidth
-          id="productCode"
-          name="productCode"
-          label="Código do Produto"
-          onChange={formik.handleChange}
-          value={formik.values.productCode}
-          error={formik.touched.productCode && Boolean(formik.errors.productCode)}
-          helperText={formik.touched.productCode && formik.errors.productCode}
-          variant="outlined"
-        />
-      </Box>
       <Box mb={2}>
         <TextField
           fullWidth

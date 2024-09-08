@@ -7,11 +7,7 @@ import Modal from '@mui/material/Modal';
 import ProductForm from '../forms/ProductForm';
 import { api } from '../../services/api/api';
 import { styled } from '@mui/material';
-const Div = styled('div')(({ theme }) => ({
-  ...theme.typography.button,
-  backgroundColor: theme.palette.background.paper,
-  padding: theme.spacing(1),
-}));
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -25,27 +21,31 @@ const style = {
   p: 4,
 };
 
-export default function ProductModal({open, orderId, handleClose}) {
+
+export default function ProductModal({open, product, handleClose}) {
+  const navigate = useNavigate();
+
+
+  const initialValues = {
+    productCode: product.productCode,
+    description: product.description,
+    grossWeight: product.grossWeight,
+    netWeight: product.netWeight,
+    unit: product.unit
+  };
   
-  
-  const [orders, setOrders] = React.useState(null)
-  
-  
-  const fetchOrders = async () => {
+  const handleSubmit = async (values) => {
     try {
-      const response = await api.get(`/orders/${orderId}`);
-      console.log(response)
-      setOrders(response.data);
+      const response = await api.put(`/products/${product.productCode}`, values);
+  
+      console.log(response);
+
+      window.location.reload()
+  
     } catch (error) {
       console.error(error);
     }
   };
-  
-  React.useEffect(() => {
-    console.log(orderId)
-    fetchOrders()
-
-  }, [open])
   
   return (
       <Modal
@@ -55,15 +55,10 @@ export default function ProductModal({open, orderId, handleClose}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {
-            orders &&
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <Div>Código da ordem: {orderId}</Div>
-            <Div>Endereço: {orders.address}</Div>
-            <Div>Frete: {orders.shipping}</Div>
-            <Div>Status: {orders.status}</Div>
+            <ProductForm initialValues={initialValues} onSubmit={handleSubmit}></ProductForm>
           </Typography>
-          }
+
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           </Typography>
         </Box>
