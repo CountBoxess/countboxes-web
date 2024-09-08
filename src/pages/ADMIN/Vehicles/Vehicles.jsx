@@ -4,6 +4,7 @@ import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';
+import VehicleModal from '../../../components/modal/VehicleModal';
 
 const columns = [
   { id: 'plate', label: 'Placa' },
@@ -15,6 +16,15 @@ export default function Vehicles() {
   const navigate = useNavigate();
 
   const [vehicles, setVehicles] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedVehicle, setSelectedVehicle] = React.useState('')
+
+  const handleOpenModal = (vehicles) => {
+    setSelectedVehicle(vehicles)
+
+    setOpen(true)
+  }
 
   const fetchVehicles = async () => {
     try {
@@ -30,6 +40,8 @@ export default function Vehicles() {
   }, []);
 
   return (
+    <>
+    <VehicleModal open={open} vehicle={selectedVehicle} handleClose={() => setOpen(false)}/>
     <Paper
       sx={{
         marginX: 12,
@@ -47,7 +59,8 @@ export default function Vehicles() {
           Criar veículo
         </Button>
       </Box>
-      <PaginatedTable items={vehicles} columns={columns} />
+      <PaginatedTable items={vehicles} columns={columns} onRowClick={handleOpenModal}/>
     </Paper>
+    </>
   );
 }
