@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { config } from './config';
 import Quagga from 'quagga';
+import './style.css';
 
 const Scanner = (props) => {
   const { onDetected } = props;
@@ -30,16 +31,6 @@ const Scanner = (props) => {
             Number(drawingCanvas.getAttribute('width')),
             Number(drawingCanvas.getAttribute('height'))
           );
-          result.boxes
-            .filter(function (box) {
-              return box !== result.box;
-            })
-            .forEach(function (box) {
-              Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
-                color: 'green',
-                lineWidth: 2
-              });
-            });
         }
 
         if (result.box) {

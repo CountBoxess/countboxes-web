@@ -25,7 +25,9 @@ const ItemScannerPage = () => {
   return (
     <div>
       <h1>Escaneando Item</h1>
-      <Scanner onDetected={handleDetected} />
+      <div>
+        <Scanner onDetected={handleDetected} />
+      </div>
       {/* {showModal && (
         // <Modal scannedCode={scannedCode} onConfirm={handleConfirm} onCancel={handleCancel} />
       )} */}

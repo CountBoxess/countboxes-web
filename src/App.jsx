@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -28,7 +30,6 @@ import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
 
 function App() {
   const defaultTheme = createTheme();
-
   const Private = ({ children }) => {
     const { authenticated, loading, user } = useAuth();
 
