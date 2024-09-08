@@ -72,7 +72,7 @@ export default function PaginatedTable({ items, columns, onRowClick }) {
           <TableBody>
             {visibleItems.map((item, rowIndex) => (
               <StyledTableRow key={rowIndex} onClick={() => {
-                onRowClick(item.orderCode)}}>
+                onRowClick(item)}}>
                 {columns.map((column) => (
                   <StyledTableCell key={column.id}>
                     {column.render ? column.render(item) : item[column.id]}

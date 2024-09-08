@@ -4,6 +4,7 @@ import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import React, { useEffect, useState } from 'react';
+import ProductModal from '../../../components/modal/productModal';
 
 const columns = [
   { id: 'productCode', label: 'Código' },
@@ -13,15 +14,19 @@ const columns = [
   { id: 'unit', label: 'Unidade' }
 ];
 
-// const columns = [
-//   { id: 'name', label: 'Name' },
-//   { id: 'price', label: 'Price' }
-// ];
-
 export default function Products() {
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedProduct, setSelectedProduct] = React.useState('')
+
+  const handleOpenModal = (product) => {
+    setSelectedProduct(product)
+
+    setOpen(true)
+  }
 
   const fetchProducts = async () => {
     try {
@@ -37,6 +42,8 @@ export default function Products() {
   }, []);
 
   return (
+    <>
+    <ProductModal open={open} product={selectedProduct} handleClose={() => setOpen(false)}/>
     <Paper
       sx={{
         marginX: 12,
@@ -57,7 +64,8 @@ export default function Products() {
           Criar produto
         </Button>
       </Box>
-      <PaginatedTable items={products} columns={columns} />
+      <PaginatedTable items={products} columns={columns} onRowClick={handleOpenModal}/>
     </Paper>
+    </>
   );
 }

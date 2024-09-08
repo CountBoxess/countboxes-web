@@ -21,7 +21,7 @@ export default function CreateProduct() {
       const response = await api.post('/products', values);
 
       console.log(response);
-
+ 
       navigate('/produtos');
     } catch (error) {
       console.error(error);
