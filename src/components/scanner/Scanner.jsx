@@ -62,7 +62,7 @@ const Scanner = (props) => {
   }, []);
 
   const detected = (result) => {
-    onDetected(result.codeResult.code);
+    onDetected(result);
   };
 
   return (
