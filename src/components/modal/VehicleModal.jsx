@@ -23,25 +23,27 @@ const style = {
 };
 
 
-export default function VehicleModal({open, vehicle, handleClose}) {
+export default function VehicleModal({open, vehicle, handleClose, refetch}) {
   const navigate = useNavigate();
 
 
   const initialValues = {
-    // Não tem como trocar a placa pois não tem verificação se ja existe a placa na api
     plate: vehicle.plate,
     model: vehicle.model,
     type: vehicle.type,
-    active: vehicle.active
+    active: vehicle.active == 'Ativo' ? true : false
   };
   
   const handleSubmit = async (values) => {
     try {
+      console.log(values)
+
       const response = await api.put(`/vehicles/${vehicle.vehicleCode}`, values);
   
       console.log(response);
 
-      window.location.reload()
+      refetch()
+      handleClose()
   
     } catch (error) {
       console.error(error);

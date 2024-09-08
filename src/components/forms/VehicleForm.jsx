@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
@@ -73,6 +73,22 @@ export default function VehicleForm({ initialValues, onSubmit, isPlateReadOnly, 
           helperText={formik.touched.type && formik.errors.type}
           variant="outlined"
         />
+      </Box>
+      <Box mb={2}>
+        <FormControl fullWidth>
+          <InputLabel id="status-select-label">Status</InputLabel>
+          <Select
+            labelId="status-select-label"
+            id="active"
+            value={formik.values.active}
+            name="active"
+            label="Status"
+            onChange={formik.handleChange}
+          >
+            <MenuItem value={true}>Ativo</MenuItem>
+            <MenuItem value={false}>Inativo</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
       <Box
         sx={{

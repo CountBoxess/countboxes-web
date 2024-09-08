@@ -29,7 +29,7 @@ unit:
       .required('Unidade é obrigatório'),
 });
 
-export default function ProductForm({ initialValues, onSubmit }) {
+export default function ProductForm({ initialValues, onSubmit, isProductCodeReadOnly}) {
   const navigate = useNavigate()
 
   const formik = useFormik({
@@ -40,6 +40,22 @@ export default function ProductForm({ initialValues, onSubmit }) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
+      <Box mb={2}>
+        <TextField
+          fullWidth
+          id="productCode"
+          name="productCode"
+          label="Código do Producto"
+          onChange={formik.handleChange}
+          value={formik.values.productCode}
+          error={formik.touched.productCode && Boolean(formik.errors.productCode)}
+          helperText={formik.touched.productCode && formik.errors.productCode}
+          variant="outlined"
+          InputProps={{
+            readOnly: isProductCodeReadOnly
+          }}
+        />
+      </Box>
       <Box mb={2}>
         <TextField
           fullWidth

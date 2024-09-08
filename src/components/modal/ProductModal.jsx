@@ -56,7 +56,7 @@ export default function ProductModal({open, product, handleClose}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <ProductForm initialValues={initialValues} onSubmit={handleSubmit}></ProductForm>
+            <ProductForm initialValues={initialValues} onSubmit={handleSubmit} isProductCodeReadOnly={true}></ProductForm>
           </Typography>
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
