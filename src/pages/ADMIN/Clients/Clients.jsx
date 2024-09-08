@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';
 import privateRoutes from '../../../routes/privateRoutes';
+import ClientModal from '../../../components/modal/ClientModal';
+
 
 const columns = [
   { id: 'CNPJ', label: 'CNPJ' },
@@ -23,6 +25,13 @@ export default function Clients() {
   const navigate = useNavigate();
 
   const [clients, setClients] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [selectedClient, setSelectedClient] = React.useState('');
+
+  const handleOpenModal = (clients) => {
+    setSelectedClient(clients)
+    setOpen(true)
+  }
 
   const fetchClients = async () => {
     try {
@@ -38,6 +47,8 @@ export default function Clients() {
   }, []);
 
   return (
+    <>
+    <ClientModal open={open} client={selectedClient} handleClose={() => setOpen(false)} refetch={fetchClients}></ClientModal>
     <Paper
       sx={{
         marginX: 12,
@@ -58,7 +69,8 @@ export default function Clients() {
           Criar Cliente
         </Button>
       </Box>
-      <PaginatedTable items={clients} columns={columns} />
+      <PaginatedTable items={clients} columns={columns} onRowClick={handleOpenModal}/>
     </Paper>
+    </>
   );
 }

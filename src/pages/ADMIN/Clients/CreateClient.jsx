@@ -52,7 +52,7 @@ export default function CreateClient() {
         sx={{
           padding: 6
         }}>
-        <ClientForm initialValues={initialValues} onSubmit={handleSubmit} />
+        <ClientForm initialValues={initialValues} onSubmit={handleSubmit} isModal={false}/>
       </Box>
     </Paper>
   );
