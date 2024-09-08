@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Paper, Typography } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { Add, FactCheck } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';
 import privateRoutes from '../../../routes/privateRoutes';
+import LoadModal from '../../../components/modal/LoadModal';
 
 const columns = [
   { id: 'loadCode', label: 'Código' },
@@ -17,6 +18,13 @@ export default function Loads() {
   const navigate = useNavigate();
 
   const [loads, setLoads] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const [selectedLoad, setSelectedLoad] = React.useState('');
+  
+  const handleOpenModal = (loads) => {
+    setSelectedLoad(loads)
+    setOpen(true)
+  }
 
   const fetchLoads = async () => {
     try {
@@ -27,11 +35,14 @@ export default function Loads() {
     }
   };
 
+
   useEffect(() => {
     fetchLoads();
   }, []);
 
   return (
+    <>
+    <LoadModal open={open} load={selectedLoad} handleClose={() => setOpen(false)} refetch={fetchLoads}></LoadModal>
     <Paper
       sx={{
         marginX: 12,
@@ -52,7 +63,8 @@ export default function Loads() {
           Criar Carga
         </Button>
       </Box>
-      <PaginatedTable items={loads} columns={columns} />
+      <PaginatedTable items={loads} columns={columns} onRowClick={handleOpenModal}/>
     </Paper>
+  </>  
   );
 }

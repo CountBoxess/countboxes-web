@@ -21,7 +21,7 @@ export const schema = Yup.object({
     .required('O status é obrigatório.')
 });
 
-export default function LoadForm({ initialValues, onSubmit }) {
+export default function LoadForm({ initialValues, onSubmit, isModal }) {
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -91,21 +91,21 @@ export default function LoadForm({ initialValues, onSubmit }) {
           }}>
           Enviar
         </Button>
-        <Button
+        {!isModal && (
+          <Button
           variant="contained"
-          onClick={() => {
-            formik.resetForm();
-            navigate('/cargas');
-          }} 
+          onClick={() => navigate('/cargas')}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
             ':hover': {
               backgroundColor: '#d32f2f'
             }
-          }}>
+          }}
+          >
           Cancelar
         </Button>
+        )}
       </Box>
     </form>
   );
