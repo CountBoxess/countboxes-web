@@ -3,6 +3,7 @@ import React from 'react';
 import ClientForm from '../../../components/forms/ClientForm';
 import { api } from '../../../services/api/api';
 import { useNavigate } from 'react-router-dom';
+import { showAlert } from '../../../utils/showAlert';
 
 export default function CreateClient() {
   const initialValues = {
@@ -29,6 +30,10 @@ export default function CreateClient() {
       navigate('/clientes');
     } catch (error) {
       console.error(error);
+      showAlert({
+        message: error.response.data.description,
+        type: 'error'
+      })
     }
   };
 
