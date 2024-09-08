@@ -4,7 +4,7 @@ import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';
-import ProductModal from '../../../components/modal/productModal';
+// import ProductModal from '../../../components/modal/productModal';
 
 const columns = [
   { id: 'orderCode', label: 'Código' },
@@ -42,7 +42,7 @@ export default function Orders() {
 
   return (
     <>
-    <ProductModal open={open} orderId={selectedOrder} handleClose={() => setOpen(false)}/>
+    {/* <ProductModal open={open} orderId={selectedOrder} handleClose={() => setOpen(false)}/> */}
     <Paper
       sx={{
         marginX: 12,

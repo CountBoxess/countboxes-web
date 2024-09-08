@@ -8,6 +8,7 @@ import ProductForm from '../forms/ProductForm';
 import { api } from '../../services/api/api';
 import { styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import VehicleForm from '../forms/VehicleForm';
 
 const style = {
   position: 'absolute',
@@ -22,25 +23,27 @@ const style = {
 };
 
 
-export default function ProductModal({open, product, handleClose}) {
+export default function VehicleModal({open, vehicle, handleClose, refetch}) {
   const navigate = useNavigate();
 
 
   const initialValues = {
-    productCode: product.productCode,
-    description: product.description,
-    grossWeight: product.grossWeight,
-    netWeight: product.netWeight,
-    unit: product.unit
+    plate: vehicle.plate,
+    model: vehicle.model,
+    type: vehicle.type,
+    active: vehicle.active == 'Ativo' ? true : false
   };
   
   const handleSubmit = async (values) => {
     try {
-      const response = await api.put(`/products/${product.productCode}`, values);
+      console.log(values)
+
+      const response = await api.put(`/vehicles/${vehicle.vehicleCode}`, values);
   
       console.log(response);
 
-      window.location.reload()
+      refetch()
+      handleClose()
   
     } catch (error) {
       console.error(error);
@@ -56,7 +59,7 @@ export default function ProductModal({open, product, handleClose}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <ProductForm initialValues={initialValues} onSubmit={handleSubmit} isProductCodeReadOnly={true}></ProductForm>
+            <VehicleForm initialValues={initialValues} onSubmit={handleSubmit} isPlateReadOnly={true} isModal={true}></VehicleForm>
           </Typography>
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
