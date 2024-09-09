@@ -42,7 +42,11 @@ export default function CreateProduct() {
         sx={{
           padding: 6
         }}>
-        <ProductForm initialValues={initialValues} onSubmit={handleSubmit} />
+        <ProductForm
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          isProductCodeReadOnly={false}
+        />
       </Box>
     </Paper>
   );
