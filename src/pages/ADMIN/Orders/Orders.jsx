@@ -19,7 +19,6 @@ export default function Orders() {
   const [orders, setOrders] = useState([]);
 
   const handleRowClick = (order) => {
-
     navigate('/ordens-de-pedido/' + order.orderCode);
   };
 
@@ -45,8 +44,9 @@ export default function Orders() {
         }}>
         <Box
           sx={{
-            marginX: 12,
-            marginY: 8
+            display: 'flex',
+            justifyContent: 'space-between',
+            padding: 2
           }}>
           <Typography fontSize={22}>Ordens de pedido</Typography>
           <Button
