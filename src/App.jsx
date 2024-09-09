@@ -32,6 +32,9 @@ import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
 import CreateProduct from './pages/ADMIN/Products/CreateProduct';
 import { OrderDetails } from './pages/ADMIN/OrderProducts/OrderDetails';
 import CreateUser from './pages/ADMIN/Users/CreateUser';
+import LoadedOrderList from './pages/WORKER/Unload/LoadedOrderList'
+import LoadedOrderDetail from './pages/WORKER/Unload/LoadedOrderDetail';
+import ItemUnloadScannerPage from './pages/WORKER/Unload/ItemUnloadScanner/ItemUnloadScanner';
 
 function App() {
   const defaultTheme = createTheme();
@@ -258,10 +261,34 @@ function App() {
               }
             />
             <Route
+              path={workerRoutes.LOADEDORDERLIST}
+              element={
+                <Worker>
+                  <LoadedOrderList />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.LOADEDORDERDETAILS}
+              element={
+                <Worker>
+                  <LoadedOrderDetail />
+                </Worker>
+              }
+            />
+            <Route
               path={workerRoutes.ITEMSCANNER}
               element={
                 <Worker>
                   <ItemScannerPage />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ITEMUNLOADSCANNER}
+              element={
+                <Worker>
+                  <ItemUnloadScannerPage />
                 </Worker>
               }
             />

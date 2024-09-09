@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -8,7 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-// import backgroundImage from '../../../../src/assets/images/loginBackground.jpg';
+import loginBackground from '../../../assets/images/loginBackground.jpg';
 
 import { useAuth } from '../../../context/AuthContext';
 
@@ -44,7 +45,7 @@ function SignIn() {
         justifyContent: 'center',
         alignItems: 'center',
 
-        // backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${loginBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'

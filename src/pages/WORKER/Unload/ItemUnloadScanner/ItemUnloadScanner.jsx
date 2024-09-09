@@ -1,15 +1,15 @@
 //@ts-nocheck
 import React, { useEffect, useState } from 'react';
-import Scanner from '../../../components/scanner/Scanner';
+import Scanner from '../../../../components/scanner/Scanner';
 import { Box, Button, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Cancel } from '@mui/icons-material';
-import { api } from '../../../services/api/api';
-import { showAlert } from '../../../utils/showAlert';
+import { api } from '../../../../services/api/api';
+import { showAlert } from '../../../../utils/showAlert';
 import ConfirmModal from './components/ConfirmModal';
-import { useAuth } from '../../../context/AuthContext';
+import { useAuth } from '../../../../context/AuthContext';
 
-const ItemScannerPage = () => {
+const ItemUnloadScannerPage = () => {
   const { user } = useAuth();
   const { orderId, itemId, type } = useParams();
   const navigate = useNavigate();
@@ -34,10 +34,11 @@ const ItemScannerPage = () => {
     postScannedCode();
     setOpen(false);
 
+
     // if all items were scanned, navigate to the next page
-    if (orderInfo.Transaction.length + 1 === orderInfo.quantity) {
+    if (orderInfo.Transaction.length === (orderInfo.quantity * 2) - 1) {
       showAlert({
-        message: 'Todos os itens foram carregados com sucesso!',
+        message: 'Todos os itens foram descarregados com sucesso!',
         type: 'success'
       });
 
@@ -56,7 +57,7 @@ const ItemScannerPage = () => {
         loadCode: orderInfo.order.loadCode,
         productCode: scannedCode,
         userCode: user.userCode,
-        transactionCategory: 'CARREGAMENTO'
+        transactionCategory: 'DESCARREGAMENTO'
       });
 
       // refetch order infos
@@ -207,7 +208,7 @@ const ItemScannerPage = () => {
                 <>
                   <Box>
                     <Typography color={'#f7f7f7'} fontSize={14} textAlign="center">
-                      Itens a serem carregados 
+                      Itens a serem descarregados
                     </Typography>
                     <Typography fontWeight={700} fontSize={24} color={'#f7f7f7'} textAlign="center">
                       {orderInfo.quantity}
@@ -215,10 +216,10 @@ const ItemScannerPage = () => {
                   </Box>
                   <Box>
                     <Typography color={'#f7f7f7'} fontSize={14} textAlign="center">
-                      Itens carregados
+                      Itens descarregados
                     </Typography>
                     <Typography fontWeight={700} fontSize={24} color={'#4caf50'} textAlign="center">
-                      {orderInfo.Transaction.length}
+                      {orderInfo.Transaction.length - orderInfo.quantity}
                     </Typography>
                   </Box>
                 </>
@@ -231,4 +232,4 @@ const ItemScannerPage = () => {
   );
 };
 
-export default ItemScannerPage;
+export default ItemUnloadScannerPage;
