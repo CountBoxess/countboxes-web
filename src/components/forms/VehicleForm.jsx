@@ -1,26 +1,29 @@
 /* eslint-disable react/prop-types */
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import validatePlate from '../../utils/validatePlate';
+import { useNavigate } from 'react-router-dom';
 
-export const schema = yup.object({
-    plate: yup
+export const schema = Yup.object({
+    plate: Yup
     .string()
     .required('Placa é obrigatória')
     .test('validate-plate', 'Placa Inválida', value => validatePlate(value)),
 
-  model: yup
+  model: Yup
     .string()
     .required('Modelo é obrigatório'),
 
-  type: yup
+  type: Yup
     .string()
     .required('Tipo é obrigatório'),
 });
 
-export default function VehicleForm({ initialValues, onSubmit }) {
+export default function VehicleForm({ initialValues, onSubmit, isPlateReadOnly, isModal}) {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -40,6 +43,9 @@ export default function VehicleForm({ initialValues, onSubmit }) {
           error={formik.touched.plate && Boolean(formik.errors.plate)}
           helperText={formik.touched.plate && formik.errors.plate}
           variant="outlined"
+          InputProps={{
+            readOnly: isPlateReadOnly, // Torna o campo "plate" somente leitura com base na prop
+          }}
         />
       </Box>
       <Box mb={2}>
@@ -68,6 +74,22 @@ export default function VehicleForm({ initialValues, onSubmit }) {
           variant="outlined"
         />
       </Box>
+      <Box mb={2}>
+        <FormControl fullWidth>
+          <InputLabel id="status-select-label">Status</InputLabel>
+          <Select
+            labelId="status-select-label"
+            id="active"
+            value={formik.values.active}
+            name="active"
+            label="Status"
+            onChange={formik.handleChange}
+          >
+            <MenuItem value={true}>Ativo</MenuItem>
+            <MenuItem value={false}>Inativo</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
       <Box
         sx={{
           display: 'flex',
@@ -83,18 +105,21 @@ export default function VehicleForm({ initialValues, onSubmit }) {
           }}>
           Enviar
         </Button>
-        <Button
+        {!isModal && (
+          <Button
           variant="contained"
-          onAbort={() => formik.resetForm()}
+          onClick={() => navigate('/veiculos')}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
             ':hover': {
               backgroundColor: '#d32f2f'
             }
-          }}>
+          }}
+          >
           Cancelar
         </Button>
+        )}
       </Box>
     </form>
   );

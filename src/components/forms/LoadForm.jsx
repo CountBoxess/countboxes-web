@@ -4,14 +4,15 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { LoadStatus } from '../../utils/enums';
+import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
   vehicleCode: Yup
-    .number('O código do veículo deve ser um número')
+    .number()
     .required('O código do veículo é obrigatório.'),
 
   userCode: Yup
-    .number('O código do usuário deve ser um número')
+    .number()
     .required('O código do usuário é obrigatório.'),
 
   status: Yup.string()
@@ -20,7 +21,9 @@ export const schema = Yup.object({
     .required('O status é obrigatório.')
 });
 
-export default function LoadForm({ initialValues, onSubmit }) {
+export default function LoadForm({ initialValues, onSubmit, isModal }) {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,
@@ -88,18 +91,21 @@ export default function LoadForm({ initialValues, onSubmit }) {
           }}>
           Enviar
         </Button>
-        <Button
+        {!isModal && (
+          <Button
           variant="contained"
-          onAbort={() => formik.resetForm()}
+          onClick={() => navigate('/cargas')}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
             ':hover': {
               backgroundColor: '#d32f2f'
             }
-          }}>
+          }}
+          >
           Cancelar
         </Button>
+        )}
       </Box>
     </form>
   );

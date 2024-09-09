@@ -4,11 +4,13 @@ import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';
+import VehicleModal from '../../../components/modal/VehicleModal';
 
 const columns = [
   { id: 'plate', label: 'Placa' },
   { id: 'model', label: 'Modelo' },
-  { id: 'type', label: 'Tipo' }
+  { id: 'type', label: 'Tipo' },
+  { id: 'active', label: 'Ativo', format: (value) => (value ? 'Ativo' : 'Inativo') }
 ];
 
 export default function Vehicles() {
@@ -16,20 +18,36 @@ export default function Vehicles() {
 
   const [vehicles, setVehicles] = useState([]);
 
+  const [open, setOpen] = React.useState(false);
+  const [selectedVehicle, setSelectedVehicle] = React.useState('')
+
+  const handleOpenModal = (vehicles) => {
+    setSelectedVehicle(vehicles)
+
+    setOpen(true)
+  }
+
   const fetchVehicles = async () => {
     try {
       const response = await api.get('/vehicles');
-      setVehicles(response.data);
+      const mappedVehicles = response.data.map(vehicle => ({
+        ...vehicle,
+        active: vehicle.active ? 'Ativo' : 'Inativo'
+      }));
+      setVehicles(mappedVehicles);
     } catch (error) {
       console.error(error);
     }
   };
+  
 
   useEffect(() => {
     fetchVehicles();
   }, []);
 
   return (
+    <>
+    <VehicleModal open={open} vehicle={selectedVehicle} handleClose={() => setOpen(false)} refetch={fetchVehicles}/>
     <Paper
       sx={{
         marginX: 12,
@@ -47,7 +65,8 @@ export default function Vehicles() {
           Criar veículo
         </Button>
       </Box>
-      <PaginatedTable items={vehicles} columns={columns} />
+      <PaginatedTable items={vehicles} columns={columns} onRowClick={handleOpenModal}/>
     </Paper>
+    </>
   );
 }

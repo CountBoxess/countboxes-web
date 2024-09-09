@@ -18,15 +18,18 @@ import {
   CreateLoad,
   CreateOrder,
   CreateVehicle,
+  CreateClient,
   Home,
   Loads,
   Orders,
   Products,
   Users,
-  Vehicles
+  Vehicles,
+  Clients
 } from './pages/ADMIN';
 import { SignIn } from './pages/PUBLIC';
 import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
+import CreateProduct from './pages/ADMIN/Products/CreateProduct';
 
 function App() {
   const defaultTheme = createTheme();
@@ -174,6 +177,36 @@ function App() {
                 <Private>
                   <DrawerLayout>
                     <CreateVehicle />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CLIENTES}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <Clients />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_CLIENTE}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateClient />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_PRODUTO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateProduct />
                   </DrawerLayout>
                 </Private>
               }
