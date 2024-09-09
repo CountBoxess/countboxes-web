@@ -10,4 +10,4 @@
    npm install
 4. Inicie o servidor:
    ```
-   npm install
+   npm run dev
