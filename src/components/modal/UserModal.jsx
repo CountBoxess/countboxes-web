@@ -1,13 +1,11 @@
 // @ts-nocheck
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import UserForm from '../forms/UserForm';
 import { api } from '../../services/api/api';
-import { styled } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -23,7 +21,6 @@ const style = {
 
 
 export default function UserModal({open, user, handleClose}) {
-  const navigate = useNavigate();
 
 
   const initialValues = {
@@ -58,7 +55,7 @@ export default function UserModal({open, user, handleClose}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <UserForm initialValues={initialValues} onSubmit={handleSubmit} isUserCodeReadOnly={true} isModal={true}></UserForm>
+            <UserForm initialValues={initialValues} onSubmit={handleSubmit} isModal={true}></UserForm>
           </Typography>
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>

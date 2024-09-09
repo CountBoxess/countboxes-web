@@ -17,10 +17,7 @@ export default function Orders() {
 
   const [orders, setOrders] = useState([]);
 
-  const [selectedOrder, setSelectedOrder] = React.useState('')
-
   const handleRowClick = (order) => {
-    setSelectedOrder(order)
 
     navigate('/ordens-de-pedido/' + order.orderCode)
   }

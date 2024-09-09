@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';

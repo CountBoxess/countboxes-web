@@ -1,13 +1,11 @@
 // @ts-nocheck
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ProductForm from '../forms/ProductForm';
 import { api } from '../../services/api/api';
-import { styled } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -23,7 +21,6 @@ const style = {
 
 
 export default function ProductModal({open, product, handleClose}) {
-  const navigate = useNavigate();
 
 
   const initialValues = {

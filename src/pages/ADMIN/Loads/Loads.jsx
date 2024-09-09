@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Paper, Typography } from '@mui/material';
-import { Add, FactCheck } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/api/api';
 import PaginatedTable from '../../../components/table/PaginatedTable';

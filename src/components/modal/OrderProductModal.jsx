@@ -1,13 +1,10 @@
 // @ts-nocheck
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import ProductForm from '../forms/ProductForm';
 import { api } from '../../services/api/api';
-import { styled } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import OrderProductForm from '../forms/OrderProductForm';
 
 const style = {
@@ -25,7 +22,6 @@ const style = {
 
 export default function OrderProductModal({open, product, handleClose, refetch}) {
   if (!product) return null
-  const navigate = useNavigate();
 
   const initialValues = {
     quantity: product.quantity

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductModal from '../../../components/modal/ProductModal';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import PaginatedTable from '../../../components/table/PaginatedTable';

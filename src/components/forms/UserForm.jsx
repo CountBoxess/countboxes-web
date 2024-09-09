@@ -33,7 +33,7 @@ export const schema = Yup.object({
       .required('O Email é obrigatório.'),
 });
 
-export default function UserForm({ initialValues, onSubmit, isUserCodeReadOnly, isModal}) {
+export default function UserForm({ initialValues, onSubmit, isModal}) {
   const navigate = useNavigate()
 
   const formik = useFormik({

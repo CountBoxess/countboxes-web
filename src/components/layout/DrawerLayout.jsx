@@ -17,7 +17,6 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import routes from '../../routes/privateRoutes';
 import { ExitToApp, Inventory2, LocalShipping, ReceiptLong, Garage, Groups, Person} from '@mui/icons-material';
 import { useAuth } from '../../context/AuthContext';
-import { Users } from '../../pages/ADMIN';
 
 export default function DrawerLayout({ children }) {
   const navigate = useNavigate();

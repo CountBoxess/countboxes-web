@@ -3,12 +3,7 @@ import { Box, Button, Paper, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../services/api/api";
 import OrderDetailsInfo from "../../../components/details/OrderDetailsInfo";
-import OrderProductModal from "../../../components/modal/OrderProductModal";
 
-const columns = [
-    { id: 'productCode', label: 'Código' },
-    { id: 'quantity', label: 'Quantidade' },
-];
 
 
 export function OrderDetails() {
