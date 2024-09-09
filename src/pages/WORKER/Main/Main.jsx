@@ -10,6 +10,9 @@ const Main = () => {
   const handleLoadOrders = () => {
     navigate('/work/orders');
   };
+  const handleLoadedOrders = () => {
+    navigate('/work/loaded/orders');
+  };
 
   const { handleLogout } = useAuth();
 
@@ -65,6 +68,14 @@ const Main = () => {
             height: 52
           }}>
           Fazer um carregamento
+        </Button>
+        <Button
+          onClick={handleLoadedOrders}
+          variant="contained"
+          sx={{
+            height: 52
+          }}>
+          Fazer um descarregamento
         </Button>
       </Box>
     </Box>
