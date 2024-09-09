@@ -30,6 +30,7 @@ import {
 import { SignIn } from './pages/PUBLIC';
 import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
 import CreateProduct from './pages/ADMIN/Products/CreateProduct';
+import { OrderDetails } from './pages/ADMIN/OrderProducts/OrderDetails';
 
 function App() {
   const defaultTheme = createTheme();
@@ -117,6 +118,16 @@ function App() {
                 <Private>
                   <DrawerLayout>
                     <Orders />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={'/ordens-de-pedido/:orderId'}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <OrderDetails />
                   </DrawerLayout>
                 </Private>
               }
