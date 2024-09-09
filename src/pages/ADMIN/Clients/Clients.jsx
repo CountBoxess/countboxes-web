@@ -9,6 +9,7 @@ import ClientModal from '../../../components/modal/ClientModal';
 
 
 const columns = [
+  { id: 'clientCode', label: 'Código' },
   { id: 'CNPJ', label: 'CNPJ' },
   { id: 'name', label: 'Nome' },
   { id: 'phone', label: 'Telefone' },
