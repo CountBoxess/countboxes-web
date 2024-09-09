@@ -1,5 +1,4 @@
 const HOME = '/';
-const USUARIOS = '/usuarios';
 const ORDENS_DE_PEDIDO = '/ordens-de-pedido';
 const CRIAR_ORDEM_DE_PEDIDO = '/criar-ordem-de-pedido';
 const CARGAS = '/cargas';
@@ -12,6 +11,7 @@ const CRIAR_VEICULO = '/criar-veiculo';
 const CLIENTES = '/clientes';
 const CRIAR_CLIENTE = '/criar-cliente';
 const CRIAR_PRODUTO_PEDIDO = '/criar-produto-pedido';
+const USUARIOS = '/usuarios';
 const CRIAR_USUARIO = '/criar-usuario';
 
 export default {

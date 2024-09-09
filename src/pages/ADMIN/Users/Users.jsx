@@ -13,7 +13,7 @@ const columns = [
   { id: 'cpf', label: 'CPF' },
   { id: 'phone', label: 'Telefone' },
   { id: 'type', label: 'Tipo' },
-  { id: 'active', label: 'Ativo' },
+  { id: 'active', label: 'Ativo', format: (value) => (value ? 'Ativo' : 'Inativo') },
   { id: 'email', label: 'Email' },
 ];
 
@@ -34,7 +34,11 @@ export default function Users() {
   const fetchUsers = async () => {
     try {
       const response = await api.get('/users');
-      setUsers(response.data);
+      const mappedUsers = response.data.map(user => ({
+        ...user,
+        active: user.active ? 'Ativo' : 'Inativo'
+      }))
+      setUsers(mappedUsers);
     } catch (error) {
       console.error(error);
     }
@@ -59,12 +63,12 @@ export default function Users() {
             alignItems: 'center',
             justifyContent: 'space-between'
           }}>
-          <Typography fontSize={22}>Produtos</Typography>
+          <Typography fontSize={22}>Usuários</Typography>
           <Button
             startIcon={<Add />}
             variant="contained"
-            onClick={() => navigate('/criar-produto')}>
-            Criar produto
+            onClick={() => navigate('/criar-usuario')}>
+            Criar usuário
           </Button>
         </Box>
         <PaginatedTable items={users} columns={columns} onRowClick={handleOpenModal} />

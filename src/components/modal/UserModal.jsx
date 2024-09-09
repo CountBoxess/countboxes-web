@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import ProductForm from '../forms/ProductForm';
+import UserForm from '../forms/UserForm';
 import { api } from '../../services/api/api';
 import { styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +38,7 @@ export default function UserModal({open, user, handleClose}) {
   
   const handleSubmit = async (values) => {
     try {
-      const response = await api.put(`/products/${product.productCode}`, values);
+      const response = await api.put(`/users/${user.userCode}`, values);
   
       console.log(response);
 
@@ -58,7 +58,7 @@ export default function UserModal({open, user, handleClose}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            <ProductForm initialValues={initialValues} onSubmit={handleSubmit} isProductCodeReadOnly={true}></ProductForm>
+            <UserForm initialValues={initialValues} onSubmit={handleSubmit} isUserCodeReadOnly={true} isModal={true}></UserForm>
           </Typography>
 
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
