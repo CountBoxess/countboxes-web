@@ -21,8 +21,8 @@ export const schema = Yup.object({
   email: Yup.string().email('Email incorreto.').required('O Email é obrigatório.')
 });
 
-export default function UserForm({ initialValues, onSubmit, isModal}) {
-  const navigate = useNavigate()
+export default function UserForm({ initialValues, onSubmit, isModal }) {
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -84,38 +84,38 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
           variant="outlined"
         />
       </Box>
-    
-    { !isModal && (
-      <>
-      <Box mb={2}>
-        <TextField
-          fullWidth
-          id="password"
-          name="password"
-          label="Senha"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          variant="outlined"
-          />
-      </Box>
-      <Box mb={2}>
-        <TextField
-          fullWidth
-          id="confirmPassword"
-          name="confirmPassword"
-          label="Confirme a senha"
-          onChange={formik.handleChange}
-          value={formik.values.confirmPassword}
-          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
-          variant="outlined"
-          />
-      </Box>
-      </>
+
+      {!isModal && (
+        <>
+          <Box mb={2}>
+            <TextField
+              fullWidth
+              id="password"
+              name="password"
+              label="Senha"
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              variant="outlined"
+            />
+          </Box>
+          <Box mb={2}>
+            <TextField
+              fullWidth
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirme a senha"
+              onChange={formik.handleChange}
+              value={formik.values.confirmPassword}
+              error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+              helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+              variant="outlined"
+            />
+          </Box>
+        </>
       )}
-     
+
       <Box mb={2}>
         <TextField
           fullWidth
@@ -162,7 +162,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
         {!isModal && (
           <Button
             variant="contained"
-            onClick={() => navigate('/veiculos')}
+            onClick={() => navigate('/usuarios')}
             sx={{
               width: '100%',
               backgroundColor: '#f44336',

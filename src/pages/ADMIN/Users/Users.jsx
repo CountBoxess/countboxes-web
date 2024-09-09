@@ -12,7 +12,13 @@ const columns = [
   { id: 'cpf', label: 'CPF' },
   { id: 'phone', label: 'Telefone' },
   { id: 'type', label: 'Tipo' },
-  { id: 'active', label: 'Ativo', format: (value) => (value ? 'Ativo' : 'Inativo') },
+  {
+    id: 'active',
+    label: 'Status',
+    render: (active) => {
+      return active.active ? 'Ativo' : 'Inativo';
+    }
+  },
   { id: 'email', label: 'Email' }
 ];
 
@@ -34,9 +40,9 @@ export default function Users() {
     try {
       const response = await api.get('/users');
       const mappedUsers = response.data.map((user) => ({
-        ...user,
-        active: user.active ? 'Ativo' : 'Inativo'
+        ...user
       }));
+
       setUsers(mappedUsers);
     } catch (error) {
       console.error(error);

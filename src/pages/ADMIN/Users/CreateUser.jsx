@@ -11,7 +11,7 @@ export default function CreateUser() {
     phone: '',
     type: '',
     active: '',
-    email:  ''
+    email: ''
   };
 
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function CreateUser() {
         sx={{
           padding: 6
         }}>
-        <UserForm initialValues={initialValues} onSubmit={handleSubmit}  isModal={false}/>
+        <UserForm initialValues={initialValues} onSubmit={handleSubmit} isModal={false} />
       </Box>
     </Paper>
   );
