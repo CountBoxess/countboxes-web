@@ -12,6 +12,7 @@ const CRIAR_VEICULO = '/criar-veiculo';
 const CLIENTES = '/clientes';
 const CRIAR_CLIENTE = '/criar-cliente';
 const CRIAR_PRODUTO_PEDIDO = '/criar-produto-pedido';
+const CRIAR_USUARIO = '/criar-usuario';
 
 export default {
   HOME,
@@ -27,5 +28,6 @@ export default {
   CLIENTES,
   CRIAR_CLIENTE,
   CRIAR_PRODUTO,
-  CRIAR_PRODUTO_PEDIDO
+  CRIAR_PRODUTO_PEDIDO,
+  CRIAR_USUARIO
 };

@@ -39,7 +39,7 @@ export default function Vehicles() {
       console.error(error);
     }
   };
-  
+
 
   useEffect(() => {
     fetchVehicles();
@@ -47,26 +47,26 @@ export default function Vehicles() {
 
   return (
     <>
-    <VehicleModal open={open} vehicle={selectedVehicle} handleClose={() => setOpen(false)} refetch={fetchVehicles}/>
-    <Paper
-      sx={{
-        marginX: 12,
-        marginY: 8
-      }}>
-      <Box
+      <VehicleModal open={open} vehicle={selectedVehicle} handleClose={() => setOpen(false)} refetch={fetchVehicles} />
+      <Paper
         sx={{
-          padding: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          marginX: 12,
+          marginY: 8
         }}>
-        <Typography fontSize={22}>Veículos</Typography>
-        <Button startIcon={<Add />} variant="contained" onClick={() => navigate('/criar-veiculo')}>
-          Criar veículo
-        </Button>
-      </Box>
-      <PaginatedTable items={vehicles} columns={columns} onRowClick={handleOpenModal}/>
-    </Paper>
+        <Box
+          sx={{
+            padding: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+          <Typography fontSize={22}>Veículos</Typography>
+          <Button startIcon={<Add />} variant="contained" onClick={() => navigate('/criar-veiculo')}>
+            Criar veículo
+          </Button>
+        </Box>
+        <PaginatedTable items={vehicles} columns={columns} onRowClick={handleOpenModal} />
+      </Paper>
     </>
   );
 }
