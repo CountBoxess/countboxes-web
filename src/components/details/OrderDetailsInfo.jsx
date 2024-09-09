@@ -189,7 +189,7 @@ export default function OrderDetailsInfo({ order }) {
                                     onClick={() => handleCreateProduct(order)}
                                     sx={{ marginTop: 2 }}
                                 >
-                                    Criar Produto
+                                    Confirmar
                                 </Button>
                             </Box>
                         </Paper>

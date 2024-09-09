@@ -7,31 +7,19 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
 export const schema = Yup.object({
-  productCode:
-  Yup.number()
-      .required('Código do Produto é obrigatório'),
+  productCode: Yup.number().required('Código do Produto é obrigatório'),
 
-description:
-  Yup.string()
-      .optional(),
+  description: Yup.string().optional(),
 
+  grossWeight: Yup.number().required('Peso Bruto é obrigatório'),
 
-grossWeight:
-  Yup.number()
-      .required('Peso Bruto é obrigatório'),
+  netWeight: Yup.number().required('Peso Líquido é obrigatório'),
 
-netWeight:
-  Yup.number()
-      .required('Peso Líquido é obrigatório'),
-
-
-unit:
-  Yup.string()
-      .required('Unidade é obrigatório'),
+  unit: Yup.string().required('Unidade é obrigatório')
 });
 
-export default function ProductForm({ initialValues, onSubmit, isProductCodeReadOnly}) {
-  const navigate = useNavigate()
+export default function ProductForm({ initialValues, onSubmit, isProductCodeReadOnly }) {
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -71,7 +59,7 @@ export default function ProductForm({ initialValues, onSubmit, isProductCodeRead
         />
       </Box>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="grossWeight"
           name="grossWeight"
@@ -84,7 +72,7 @@ export default function ProductForm({ initialValues, onSubmit, isProductCodeRead
         />
       </Box>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="netWeight"
           name="netWeight"
@@ -97,7 +85,7 @@ export default function ProductForm({ initialValues, onSubmit, isProductCodeRead
         />
       </Box>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="unit"
           name="unit"
@@ -130,6 +118,7 @@ export default function ProductForm({ initialValues, onSubmit, isProductCodeRead
             formik.resetForm();
             navigate('/produtos');
           }}
+          disabled={formik.isSubmitting || (formik.dirty && !formik.isValid)}
           sx={{
             width: '100%',
             backgroundColor: '#f44336',
