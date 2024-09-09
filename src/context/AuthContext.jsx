@@ -1,10 +1,12 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import routes from '../routes/routes';
+import routes from '../routes/privateRoutes';
 import { api, createSession } from '../services/api/api';
 import { jwtDecode } from 'jwt-decode';
 import { showAlert } from '../utils/showAlert';
+import publicRoutes from '../routes/publicRoutes';
 
 export const TokenContext = createContext();
 
@@ -31,31 +33,32 @@ export function AuthProvider({ children }) {
   };
 
   const handleLogin = async (email, password) => {
-    setLoading(true);
-
     try {
       const { data } = await createSession(email, password);
 
-      console.log(data);
+      const decodedToken = decodeToken(data.token);
 
-      const loggedUser = decodeToken(data.token);
-
-      console.log(loggedUser);
-
-      if (loggedUser) {
-        setUser(loggedUser);
+      if (decodedToken.user) {
+        setUser(decodedToken.user);
         localStorage.setItem('token', data.token);
         api.defaults.headers.authorization = `Bearer ${data.token}`;
       }
 
-      setLoading(false);
+      if (decodedToken.user.type === 'ADMIN') {
+        navigate(routes.HOME);
+      } else {
+        navigate(routes.ORDENS_DE_PEDIDO);
+      }
+
+      showAlert({
+        message: 'Login efetuado com sucesso!',
+        type: 'success'
+      });
     } catch (error) {
       showAlert({
         message: error.response.data.description,
         type: 'error'
       });
-
-      setLoading(false);
     }
   };
 
@@ -64,17 +67,17 @@ export function AuthProvider({ children }) {
     api.defaults.headers.authorization = null;
 
     setUser(null);
-    navigate(routes.LOGIN);
+    navigate(publicRoutes.SIGNIN);
   };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      const loggedUser = decodeToken(token);
+      const decodedToken = decodeToken(token);
 
-      if (loggedUser) {
-        setUser(loggedUser);
+      if (decodedToken) {
+        setUser(decodedToken.user);
         api.defaults.headers.authorization = `Bearer ${token}`;
       }
     }

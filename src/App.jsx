@@ -1,45 +1,79 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
-import routes from './routes/routes';
-
-import Layout from './components/Layout/Layout';
-
-import Home from './pages/Home/Home';
-import SignIn from './pages/SignIn/SignIn';
-import Users from './pages/Users/Users';
-import Orders from './pages/Orders/Orders';
-import Loads from './pages/Loads/Loads';
-import CreateOrder from './pages/Orders/CreateOrder';
-import Products from './pages/Products/Products';
-import CreateLoad from './pages/Loads/CreateLoad';
 import { AuthProvider, useAuth } from './context/AuthContext';
+
 import PageLoading from './components/loading/PageLoading';
+import DrawerLayout from './components/layout/DrawerLayout';
+
+import privateRoutes from './routes/privateRoutes';
+import publicRoutes from './routes/publicRoutes';
+import workerRoutes from './routes/workerRoutes';
+
+import {
+  CreateLoad,
+  CreateOrder,
+  CreateVehicle,
+  CreateClient,
+  Home,
+  Loads,
+  Orders,
+  Products,
+  Users,
+  Vehicles,
+  Clients
+} from './pages/ADMIN';
+import { SignIn } from './pages/PUBLIC';
+import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
+import CreateProduct from './pages/ADMIN/Products/CreateProduct';
+import { OrderDetails } from './pages/ADMIN/OrderProducts/OrderDetails';
+import CreateUser from './pages/ADMIN/Users/CreateUser';
 
 function App() {
   const defaultTheme = createTheme();
-
   const Private = ({ children }) => {
+    const { authenticated, loading, user } = useAuth();
+
+    if (loading) return <PageLoading />;
+
+    if (!authenticated) {
+      return <Navigate to={publicRoutes.SIGNIN} />;
+    }
+
+    if (user.type != 'ADMIN') {
+      return <Navigate to={workerRoutes.MAIN} />;
+    }
+
+    return children;
+  };
+
+  const Worker = ({ children }) => {
     const { authenticated, loading } = useAuth();
 
     if (loading) return <PageLoading />;
 
     if (!authenticated) {
-      return <Navigate to={routes.SIGNIN} />;
+      return <Navigate to={privateRoutes.SIGNIN} />;
     }
 
     return children;
   };
 
   const Public = ({ children }) => {
-    const { authenticated, loading } = useAuth();
+    const { authenticated, loading, user } = useAuth();
 
     if (loading) return <PageLoading />;
 
     if (authenticated) {
-      return <Navigate to={routes.HOME} />;
+      if (user.type === 'ADMIN') {
+        return <Navigate to={privateRoutes.HOME} />;
+      } else {
+        return <Navigate to={workerRoutes.MAIN} />;
+      }
     }
 
     return children;
@@ -52,7 +86,7 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route
-              path={routes.SIGNIN}
+              path={publicRoutes.SIGNIN}
               element={
                 <Public>
                   <SignIn />
@@ -60,75 +94,175 @@ function App() {
               }
             />
             <Route
-              path={routes.HOME}
+              path={privateRoutes.HOME}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Home />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
             <Route
-              path={routes.USUARIOS}
+              path={privateRoutes.USUARIOS}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Users />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
             <Route
-              path={routes.ORDENS_DE_PEDIDO}
+              path={privateRoutes.CRIAR_USUARIO}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
+                    <CreateUser />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.ORDENS_DE_PEDIDO}
+              element={
+                <Private>
+                  <DrawerLayout>
                     <Orders />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
             <Route
-              path={routes.CARGAS}
+              path={'/ordens-de-pedido/:orderId'}
               element={
                 <Private>
-                  <Layout>
-                    <Layout>
-                      <Loads />
-                    </Layout>
-                  </Layout>
+                  <DrawerLayout>
+                    <OrderDetails />
+                  </DrawerLayout>
                 </Private>
               }
             />
             <Route
-              path={routes.CRIAR_CARGA}
+              path={privateRoutes.CARGAS}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
+                    <Loads />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_CARGA}
+              element={
+                <Private>
+                  <DrawerLayout>
                     <CreateLoad />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
             <Route
-              path={routes.CRIAR_ORDEM_DE_PEDIDO}
+              path={privateRoutes.CRIAR_ORDEM_DE_PEDIDO}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <CreateOrder />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
               }
             />
             <Route
-              path={routes.PRODUTOS}
+              path={privateRoutes.PRODUTOS}
               element={
                 <Private>
-                  <Layout>
+                  <DrawerLayout>
                     <Products />
-                  </Layout>
+                  </DrawerLayout>
                 </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.VEICULOS}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <Vehicles />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_VEICULO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateVehicle />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CLIENTES}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <Clients />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_CLIENTE}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateClient />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_PRODUTO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateProduct />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={workerRoutes.MAIN}
+              element={
+                <Worker>
+                  <Main />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ORDERLIST}
+              element={
+                <Worker>
+                  <OrderList />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ORDERDETAILS}
+              element={
+                <Worker>
+                  <OrderDetail />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ITEMSCANNER}
+              element={
+                <Worker>
+                  <ItemScannerPage />
+                </Worker>
               }
             />
             <Route

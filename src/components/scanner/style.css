@@ -1,0 +1,21 @@
+#interactive.viewport {
+  width: 100%;
+  position: relative; /* Garantir que o canvas e o vídeo fiquem dentro do contêiner */
+  padding-top: 75%; /* 4:3 aspect ratio -> 3 / 4 = 0.75 */
+}
+
+#interactive.viewport canvas,
+#interactive.viewport video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Garante que o conteúdo seja redimensionado corretamente dentro da proporção */
+}
+
+#interactive.viewport canvas.drawingBuffer,
+#interactive.viewport video.drawingBuffer {
+  width: 100%;
+  height: 100%;
+}

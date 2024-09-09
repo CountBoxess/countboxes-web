@@ -1,0 +1,64 @@
+// @ts-nocheck
+/* eslint-disable react/prop-types */
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import UserForm from '../forms/UserForm';
+import { api } from '../../services/api/api';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4
+};
+
+export default function UserModal({ open, user, handleClose }) {
+  const initialValues = {
+    userCode: user.userCode,
+    name: user.name,
+    cpf: user.cpf,
+    phone: user.phone,
+    type: user.type,
+    active: user.active,
+    email: user.email
+  };
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = await api.put(`/users/${user.userCode}`, values);
+
+      console.log(response);
+
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description">
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <UserForm
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            isUserCodeReadOnly={true}
+            isModal={true}></UserForm>
+        </Typography>
+
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
+      </Box>
+    </Modal>
+  );
+}

@@ -30,10 +30,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
   '&:last-child td, &:last-child th': {
     border: 0
+  },
+  cursor: 'pointer',
+  '&:hover': {
+    background: 'rgb(54, 135, 221, 0.25)'
   }
 }));
 
-export default function PaginatedTable({ items, columns }) {
+export default function PaginatedTable({ items, columns, onRowClick }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -64,7 +68,11 @@ export default function PaginatedTable({ items, columns }) {
           </TableHead>
           <TableBody>
             {visibleItems.map((item, rowIndex) => (
-              <StyledTableRow key={rowIndex}>
+              <StyledTableRow
+                key={rowIndex}
+                onClick={() => {
+                  onRowClick(item);
+                }}>
                 {columns.map((column) => (
                   <StyledTableCell key={column.id}>
                     {column.render ? column.render(item) : item[column.id]}
