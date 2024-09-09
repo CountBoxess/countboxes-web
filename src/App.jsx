@@ -31,6 +31,7 @@ import { SignIn } from './pages/PUBLIC';
 import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
 import CreateProduct from './pages/ADMIN/Products/CreateProduct';
 import { OrderDetails } from './pages/ADMIN/OrderProducts/OrderDetails';
+import CreateUser from './pages/ADMIN/Users/CreateUser';
 
 function App() {
   const defaultTheme = createTheme();
@@ -108,6 +109,16 @@ function App() {
                 <Private>
                   <DrawerLayout>
                     <Users />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={privateRoutes.CRIAR_USUARIO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateUser />
                   </DrawerLayout>
                 </Private>
               }
