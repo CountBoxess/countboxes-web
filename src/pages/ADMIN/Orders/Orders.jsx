@@ -18,14 +18,14 @@ export default function Orders() {
 
   const [orders, setOrders] = useState([]);
 
-  const [open, setOpen] = React.useState(false);
-  const [selectedOrder, setSelectedOrder] = React.useState('')
+  const [setOpen] = React.useState(false);
+  const [setSelectedOrder] = React.useState('');
 
   const handleOpenModal = (orderId) => {
-    setSelectedOrder(orderId)
+    setSelectedOrder(orderId);
 
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const fetchOrders = async () => {
     try {
@@ -42,29 +42,29 @@ export default function Orders() {
 
   return (
     <>
-    {/* <ProductModal open={open} orderId={selectedOrder} handleClose={() => setOpen(false)}/> */}
-    <Paper
-      sx={{
-        marginX: 12,
-        marginY: 8
-      }}>
-      <Box
+      {/* <ProductModal open={open} orderId={selectedOrder} handleClose={() => setOpen(false)}/> */}
+      <Paper
         sx={{
-          padding: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          marginX: 12,
+          marginY: 8
         }}>
-        <Typography fontSize={22}>Ordens de pedido</Typography>
-        <Button
-          startIcon={<Add />}
-          variant="contained"
-          onClick={() => navigate('/criar-ordem-de-pedido')}>
-          Criar ordem de pedido
-        </Button>
-      </Box>
-      <PaginatedTable items={orders} columns={columns} onRowClick={handleOpenModal}/>
-    </Paper>
+        <Box
+          sx={{
+            padding: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+          <Typography fontSize={22}>Ordens de pedido</Typography>
+          <Button
+            startIcon={<Add />}
+            variant="contained"
+            onClick={() => navigate('/criar-ordem-de-pedido')}>
+            Criar ordem de pedido
+          </Button>
+        </Box>
+        <PaginatedTable items={orders} columns={columns} onRowClick={handleOpenModal} />
+      </Paper>
     </>
   );
 }

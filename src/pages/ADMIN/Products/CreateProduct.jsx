@@ -1,6 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material';
 import React from 'react';
-import OrderForm from '../../../components/forms/OrderForm';
 import { api } from '../../../services/api/api';
 import { useNavigate } from 'react-router-dom';
 import ProductForm from '../../../components/forms/ProductForm';
@@ -21,7 +20,7 @@ export default function CreateProduct() {
       const response = await api.post('/products', values);
 
       console.log(response);
- 
+
       navigate('/produtos');
     } catch (error) {
       console.error(error);
