@@ -3,7 +3,7 @@ import { Box, Button, Divider, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../../services/api/api';
-import DetailsSkeleton from './componenets/DetailsSkeleton';
+import DetailsSkeleton from './components/DetailsSkeleton';
 
 const OrderDetail = () => {
   const { orderId } = useParams();
@@ -118,7 +118,8 @@ const OrderDetail = () => {
                   sx={{
                     marginBottom: 2,
                     width: '100%'
-                  }}>
+                  }}
+                  onClick={() => handleScanItem(item.orderProductCode)}>
                   Carregar
                 </Button>
               )}

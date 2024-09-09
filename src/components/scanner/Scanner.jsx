@@ -11,17 +11,15 @@ const Scanner = (props) => {
     Quagga.init(config, (err) => {
       if (err) {
         console.log(err, 'error msg');
+      } else {
+        Quagga.start();
       }
-      Quagga.start();
-      return () => {
-        Quagga.stop();
-      };
     });
 
     //detecting boxes on stream
     Quagga.onProcessed((result) => {
-      var drawingCtx = Quagga.canvas.ctx.overlay,
-        drawingCanvas = Quagga.canvas.dom.overlay;
+      const drawingCtx = Quagga.canvas.ctx.overlay;
+      const drawingCanvas = Quagga.canvas.dom.overlay;
 
       if (result) {
         if (result.boxes) {
@@ -50,6 +48,13 @@ const Scanner = (props) => {
     });
 
     Quagga.onDetected(detected);
+
+    // Cleanup: stop Quagga and remove event listeners
+    return () => {
+      Quagga.offProcessed();
+      Quagga.offDetected(detected);
+      Quagga.stop();
+    };
   }, []);
 
   const detected = (result) => {
