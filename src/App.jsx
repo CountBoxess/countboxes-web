@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
+
 import PageLoading from './components/loading/PageLoading';
 import DrawerLayout from './components/layout/DrawerLayout';
+
 import privateRoutes from './routes/privateRoutes';
 import publicRoutes from './routes/publicRoutes';
 import workerRoutes from './routes/workerRoutes';
+
 import {
   CreateLoad,
   CreateOrder,
@@ -20,15 +25,14 @@ import {
   Products,
   Users,
   Vehicles,
-  Clients,
+  Clients
 } from './pages/ADMIN';
-
 import { SignIn } from './pages/PUBLIC';
+import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
 import CreateProduct from './pages/ADMIN/Products/CreateProduct';
 
 function App() {
   const defaultTheme = createTheme();
-
   const Private = ({ children }) => {
     const { authenticated, loading, user } = useAuth();
 
@@ -38,10 +42,8 @@ function App() {
       return <Navigate to={publicRoutes.SIGNIN} />;
     }
 
-    console.log(user);
-
     if (user.type != 'ADMIN') {
-      return <Navigate to={privateRoutes.ORDENS_DE_PEDIDO} />;
+      return <Navigate to={workerRoutes.MAIN} />;
     }
 
     return children;
@@ -68,7 +70,7 @@ function App() {
       if (user.type === 'ADMIN') {
         return <Navigate to={privateRoutes.HOME} />;
       } else {
-        return <Navigate to={privateRoutes.ORDENS_DE_PEDIDO} />;
+        return <Navigate to={workerRoutes.MAIN} />;
       }
     }
 
@@ -210,12 +212,34 @@ function App() {
               }
             />
             <Route
-              path={workerRoutes.HOME}
+              path={workerRoutes.MAIN}
               element={
                 <Worker>
-                  <DrawerLayout>
-                    <Orders />
-                  </DrawerLayout>
+                  <Main />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ORDERLIST}
+              element={
+                <Worker>
+                  <OrderList />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ORDERDETAILS}
+              element={
+                <Worker>
+                  <OrderDetail />
+                </Worker>
+              }
+            />
+            <Route
+              path={workerRoutes.ITEMSCANNER}
+              element={
+                <Worker>
+                  <ItemScannerPage />
                 </Worker>
               }
             />
