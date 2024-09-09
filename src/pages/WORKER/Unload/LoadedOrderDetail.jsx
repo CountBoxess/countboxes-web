@@ -160,7 +160,7 @@ const LoadedOrderDetail = () => {
               marginTop: 4
             }}
             onClick={handleConfirmUnloading}>
-            Confirmar Carregamento
+            Confirmar Descarregamento
           </Button>
         )}
         </Box>
