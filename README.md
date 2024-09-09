@@ -1,7 +1,7 @@
   ## Instalação
 1. Clone o repositório:
     ```
-    git clone https://github.com/usuario/countboxes-api.git
+    git clone https://github.com/CountBoxes/countboxes-web.git
 2. Acesse o diretório do projeto:
     ```
     cd countboxes-api
