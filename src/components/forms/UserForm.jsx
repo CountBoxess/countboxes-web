@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
@@ -20,8 +21,8 @@ export const schema = Yup.object({
   email: Yup.string().email('Email incorreto.').required('O Email é obrigatório.')
 });
 
-export default function UserForm({ initialValues, onSubmit, isModal }) {
-  const navigate = useNavigate();
+export default function UserForm({ initialValues, onSubmit, isModal}) {
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -83,6 +84,9 @@ export default function UserForm({ initialValues, onSubmit, isModal }) {
           variant="outlined"
         />
       </Box>
+    
+    { !isModal && (
+      <>
       <Box mb={2}>
         <TextField
           fullWidth
@@ -94,7 +98,7 @@ export default function UserForm({ initialValues, onSubmit, isModal }) {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
           variant="outlined"
-        />
+          />
       </Box>
       <Box mb={2}>
         <TextField
@@ -107,8 +111,11 @@ export default function UserForm({ initialValues, onSubmit, isModal }) {
           error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
           variant="outlined"
-        />
+          />
       </Box>
+      </>
+      )}
+     
       <Box mb={2}>
         <TextField
           fullWidth

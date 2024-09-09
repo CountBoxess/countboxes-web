@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
@@ -45,7 +46,7 @@ export default function ProductForm({ initialValues, onSubmit, isProductCodeRead
           fullWidth
           id="productCode"
           name="productCode"
-          label="Código do Producto"
+          label="Código do Produto"
           onChange={formik.handleChange}
           value={formik.values.productCode}
           error={formik.touched.productCode && Boolean(formik.errors.productCode)}

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // @ts-nocheck
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -19,7 +20,9 @@ const style = {
   p: 4
 };
 
-export default function ProductModal({ open, product, handleClose }) {
+
+export default function ProductModal({open, product, handleClose}) {
+
   const initialValues = {
     productCode: product.productCode,
     description: product.description,

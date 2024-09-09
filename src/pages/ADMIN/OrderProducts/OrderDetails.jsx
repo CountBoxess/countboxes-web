@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Button, Paper, Typography } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
-import { api } from '../../../services/api/api';
-import OrderDetailsInfo from '../../../components/details/OrderDetailsInfo';
+import React, { useEffect, useState } from "react";
+import { Box, Button, Paper, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { api } from "../../../services/api/api";
+import OrderDetailsInfo from "../../../components/details/OrderDetailsInfo";
+
+
 
 export function OrderDetails() {
   const { orderId } = useParams();

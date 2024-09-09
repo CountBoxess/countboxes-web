@@ -43,7 +43,7 @@ export default function CreateUser() {
         sx={{
           padding: 6
         }}>
-        <UserForm initialValues={initialValues} onSubmit={handleSubmit} isUserCodeReadOnly={true} isModal={false}/>
+        <UserForm initialValues={initialValues} onSubmit={handleSubmit}  isModal={false}/>
       </Box>
     </Paper>
   );
