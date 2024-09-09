@@ -13,12 +13,12 @@ const columns = [
   { id: 'phone', label: 'Telefone' },
   { id: 'type', label: 'Tipo' },
   { id: 'active', label: 'Ativo', format: (value) => (value ? 'Ativo' : 'Inativo') },
-  { id: 'email', label: 'Email' },
+  { id: 'email', label: 'Email' }
 ];
 
 export default function Users() {
   const navigate = useNavigate();
-  
+
   const [users, setUsers] = useState([]);
 
   const [open, setOpen] = React.useState(false);
@@ -33,10 +33,10 @@ export default function Users() {
   const fetchUsers = async () => {
     try {
       const response = await api.get('/users');
-      const mappedUsers = response.data.map(user => ({
+      const mappedUsers = response.data.map((user) => ({
         ...user,
         active: user.active ? 'Ativo' : 'Inativo'
-      }))
+      }));
       setUsers(mappedUsers);
     } catch (error) {
       console.error(error);

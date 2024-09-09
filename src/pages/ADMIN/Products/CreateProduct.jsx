@@ -20,7 +20,7 @@ export default function CreateProduct() {
       const response = await api.post('/products', values);
 
       console.log(response);
- 
+
       navigate('/produtos');
     } catch (error) {
       console.error(error);
@@ -42,7 +42,11 @@ export default function CreateProduct() {
         sx={{
           padding: 6
         }}>
-        <ProductForm initialValues={initialValues} onSubmit={handleSubmit} isProductCodeReadOnly={false}/>
+        <ProductForm
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          isProductCodeReadOnly={false}
+        />
       </Box>
     </Paper>
   );

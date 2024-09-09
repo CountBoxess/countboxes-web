@@ -20,11 +20,11 @@ export default function Loads() {
   const [loads, setLoads] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [selectedLoad, setSelectedLoad] = React.useState('');
-  
+
   const handleOpenModal = (loads) => {
-    setSelectedLoad(loads)
-    setOpen(true)
-  }
+    setSelectedLoad(loads);
+    setOpen(true);
+  };
 
   const fetchLoads = async () => {
     try {
@@ -35,36 +35,39 @@ export default function Loads() {
     }
   };
 
-
   useEffect(() => {
     fetchLoads();
   }, []);
 
   return (
     <>
-    <LoadModal open={open} load={selectedLoad} handleClose={() => setOpen(false)} refetch={fetchLoads}></LoadModal>
-    <Paper
-      sx={{
-        marginX: 12,
-        marginY: 8
-      }}>
-      <Box
+      <LoadModal
+        open={open}
+        load={selectedLoad}
+        handleClose={() => setOpen(false)}
+        refetch={fetchLoads}></LoadModal>
+      <Paper
         sx={{
-          padding: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          marginX: 12,
+          marginY: 8
         }}>
-        <Typography fontSize={22}>Cargas</Typography>
-        <Button
-          startIcon={<Add />}
-          variant="contained"
-          onClick={() => navigate(privateRoutes.CRIAR_CARGA)}>
-          Criar Carga
-        </Button>
-      </Box>
-      <PaginatedTable items={loads} columns={columns} onRowClick={handleOpenModal}/>
-    </Paper>
-  </>  
+        <Box
+          sx={{
+            padding: 2,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}>
+          <Typography fontSize={22}>Cargas</Typography>
+          <Button
+            startIcon={<Add />}
+            variant="contained"
+            onClick={() => navigate(privateRoutes.CRIAR_CARGA)}>
+            Criar Carga
+          </Button>
+        </Box>
+        <PaginatedTable items={loads} columns={columns} onRowClick={handleOpenModal} />
+      </Paper>
+    </>
   );
 }

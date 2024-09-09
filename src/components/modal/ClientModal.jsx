@@ -16,12 +16,10 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 4
 };
 
-
-export default function LoadModal({open, client, handleClose, refetch}) {
-
+export default function LoadModal({ open, client, handleClose, refetch }) {
   const initialValues = {
     CNPJ: client.CNPJ,
     name: client.name,
@@ -37,35 +35,36 @@ export default function LoadModal({open, client, handleClose, refetch}) {
 
   const handleSubmit = async (values) => {
     try {
-      console.log(values)
+      console.log(values);
 
       const response = await api.put(`/clients/${client.clientCode}`, values);
-  
+
       console.log(response);
 
-      refetch()
-      handleClose()
-  
+      refetch();
+      handleClose();
     } catch (error) {
       console.error(error);
     }
   };
-  
-  return (
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            <ClientForm initialValues={initialValues} onSubmit={handleSubmit} isCNPJReadOnly={true} isModal={true}></ClientForm>
-          </Typography>
 
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          </Typography>
-        </Box>
-      </Modal>
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description">
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <ClientForm
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            isCNPJReadOnly={true}
+            isModal={true}></ClientForm>
+        </Typography>
+
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
+      </Box>
+    </Modal>
   );
 }

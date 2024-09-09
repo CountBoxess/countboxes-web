@@ -16,50 +16,45 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 4
 };
 
-
-export default function LoadModal({open, load, handleClose, refetch}) {
-
+export default function LoadModal({ open, load, handleClose, refetch }) {
   const initialValues = {
     loadCode: load.loadCode,
     vehicleCode: load.vehicleCode,
     userCode: load.usercode,
     status: load.status
   };
-  
+
   const handleSubmit = async (values) => {
     try {
-      console.log(values)
+      console.log(values);
 
       const response = await api.put(`/loads/${load.loadCode}`, values);
-  
+
       console.log(response);
 
-      refetch()
-      handleClose()
-  
+      refetch();
+      handleClose();
     } catch (error) {
       console.error(error);
     }
   };
-  
-  return (
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            <LoadForm initialValues={initialValues} onSubmit={handleSubmit} isModal={true}></LoadForm>
-          </Typography>
 
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          </Typography>
-        </Box>
-      </Modal>
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description">
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <LoadForm initialValues={initialValues} onSubmit={handleSubmit} isModal={true}></LoadForm>
+        </Typography>
+
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
+      </Box>
+    </Modal>
   );
 }

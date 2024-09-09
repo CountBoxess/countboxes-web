@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Paper, Typography } from '@mui/material';
 import { Add } from '@mui/icons-material';
@@ -19,8 +20,8 @@ export default function Orders() {
 
   const handleRowClick = (order) => {
 
-    navigate('/ordens-de-pedido/' + order.orderCode)
-  }
+    navigate('/ordens-de-pedido/' + order.orderCode);
+  };
 
   const fetchOrders = async () => {
     try {
@@ -37,28 +38,26 @@ export default function Orders() {
 
   return (
     <>
-    <Paper
-      sx={{
-        marginX: 12,
-        marginY: 8
-      }}>
-      <Box
+      <Paper
         sx={{
-          padding: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
+          marginX: 12,
+          marginY: 8
         }}>
-        <Typography fontSize={22}>Ordens de pedido</Typography>
-        <Button
-          startIcon={<Add />}
-          variant="contained"
-          onClick={() => navigate('/criar-ordem-de-pedido')}>
-          Criar ordem de pedido
-        </Button>
-      </Box>
-      <PaginatedTable items={orders} columns={columns} onRowClick={handleRowClick}/>
-    </Paper>
+        <Box
+          sx={{
+            marginX: 12,
+            marginY: 8
+          }}>
+          <Typography fontSize={22}>Ordens de pedido</Typography>
+          <Button
+            startIcon={<Add />}
+            variant="contained"
+            onClick={() => navigate('/criar-ordem-de-pedido')}>
+            Criar ordem de pedido
+          </Button>
+        </Box>
+        <PaginatedTable items={orders} columns={columns} onRowClick={handleRowClick} />
+      </Paper>
     </>
   );
 }

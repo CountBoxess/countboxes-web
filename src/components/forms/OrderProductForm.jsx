@@ -6,11 +6,10 @@ import React from 'react';
 import * as Yup from 'yup';
 
 export const schema = Yup.object({
-  quantity: Yup.number(),
+  quantity: Yup.number()
 });
 
 export default function OrderProductForm({ initialValues, onSubmit }) {
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,

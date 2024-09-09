@@ -8,29 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import validateCPF from '../../utils/validateCPF';
 
 export const schema = Yup.object({
-  name:
-  Yup.string()
-      .required('O nome é obrigatório'),
+  name: Yup.string().required('O nome é obrigatório'),
 
-  cpf:
-  Yup.string()
-      .required('O CPF é obrigatório')
-      .test('validate-cpf', 'CPF inválido', value => validateCPF(value)),
+  cpf: Yup.string()
+    .required('O CPF é obrigatório')
+    .test('validate-cpf', 'CPF inválido', (value) => validateCPF(value)),
 
+  phone: Yup.string().required('O telefone é obrigatório'),
 
-  phone:
-  Yup.string()
-      .required('O telefone é obrigatório'),
+  type: Yup.string().required('O tipo é obrigatório.'),
 
-  type:
-  Yup.string()
-      .required('O tipo é obrigatório.'),
-
-
-  email:
-  Yup.string()
-      .email('Email incorreto.')
-      .required('O Email é obrigatório.'),
+  email: Yup.string().email('Email incorreto.').required('O Email é obrigatório.')
 });
 
 export default function UserForm({ initialValues, onSubmit, isModal}) {
@@ -71,7 +59,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
         />
       </Box>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="phone"
           name="phone"
@@ -84,7 +72,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
         />
       </Box>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="email"
           name="email"
@@ -100,7 +88,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
     { !isModal && (
       <>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="password"
           name="password"
@@ -113,7 +101,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
           />
       </Box>
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="confirmPassword"
           name="confirmPassword"
@@ -129,7 +117,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
       )}
      
       <Box mb={2}>
-      <TextField
+        <TextField
           fullWidth
           id="type"
           name="type"
@@ -150,8 +138,7 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
             value={formik.values.active}
             name="active"
             label="Status"
-            onChange={formik.handleChange}
-          >
+            onChange={formik.handleChange}>
             <MenuItem value={true}>Ativo</MenuItem>
             <MenuItem value={false}>Inativo</MenuItem>
           </Select>
@@ -174,18 +161,17 @@ export default function UserForm({ initialValues, onSubmit, isModal}) {
         </Button>
         {!isModal && (
           <Button
-          variant="contained"
-          onClick={() => navigate('/veiculos')}
-          sx={{
-            width: '100%',
-            backgroundColor: '#f44336',
-            ':hover': {
-              backgroundColor: '#d32f2f'
-            }
-          }}
-          >
-          Cancelar
-        </Button>
+            variant="contained"
+            onClick={() => navigate('/veiculos')}
+            sx={{
+              width: '100%',
+              backgroundColor: '#f44336',
+              ':hover': {
+                backgroundColor: '#d32f2f'
+              }
+            }}>
+            Cancelar
+          </Button>
         )}
       </Box>
     </form>

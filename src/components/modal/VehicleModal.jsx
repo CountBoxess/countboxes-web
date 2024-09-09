@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // @ts-nocheck
 /* eslint-disable react/prop-types */
 import * as React from 'react';
@@ -16,51 +17,49 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 4
 };
 
-
-export default function VehicleModal({open, vehicle, handleClose, refetch}) {
-
-
+export default function VehicleModal({ open, vehicle, handleClose, refetch }) {
   const initialValues = {
     plate: vehicle.plate,
     model: vehicle.model,
     type: vehicle.type,
     active: vehicle.active == 'Ativo' ? true : false
   };
-  
+
   const handleSubmit = async (values) => {
     try {
-      console.log(values)
+      console.log(values);
 
       const response = await api.put(`/vehicles/${vehicle.vehicleCode}`, values);
-  
+
       console.log(response);
 
-      refetch()
-      handleClose()
-  
+      refetch();
+      handleClose();
     } catch (error) {
       console.error(error);
     }
   };
-  
-  return (
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            <VehicleForm initialValues={initialValues} onSubmit={handleSubmit} isPlateReadOnly={true} isModal={true}></VehicleForm>
-          </Typography>
 
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          </Typography>
-        </Box>
-      </Modal>
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description">
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          <VehicleForm
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            isPlateReadOnly={true}
+            isModal={true}></VehicleForm>
+        </Typography>
+
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
+      </Box>
+    </Modal>
   );
 }

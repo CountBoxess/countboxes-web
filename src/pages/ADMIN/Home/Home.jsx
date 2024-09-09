@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <Box
       sx={{
-        backgroundColor: '#E2DEDE',
+        backgroundColor: '#f7f7f7',
         height: '100vh',
 
         paddingX: 8,
