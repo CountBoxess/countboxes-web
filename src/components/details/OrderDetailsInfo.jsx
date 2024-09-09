@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { Box, Paper, Typography, Autocomplete, TextField, FormControl, Button, Grid } from '@mui/material';
 import PaginatedTable from '../table/PaginatedTable';
