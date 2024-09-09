@@ -30,6 +30,8 @@ import {
 import { SignIn } from './pages/PUBLIC';
 import { ItemScannerPage, Main, OrderDetail, OrderList } from './pages/WORKER';
 import CreateProduct from './pages/ADMIN/Products/CreateProduct';
+import { OrderDetails } from './pages/ADMIN/OrderProducts/OrderDetails';
+import CreateUser from './pages/ADMIN/Users/CreateUser';
 
 function App() {
   const defaultTheme = createTheme();
@@ -112,11 +114,31 @@ function App() {
               }
             />
             <Route
+              path={privateRoutes.CRIAR_USUARIO}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <CreateUser />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
               path={privateRoutes.ORDENS_DE_PEDIDO}
               element={
                 <Private>
                   <DrawerLayout>
                     <Orders />
+                  </DrawerLayout>
+                </Private>
+              }
+            />
+            <Route
+              path={'/ordens-de-pedido/:orderId'}
+              element={
+                <Private>
+                  <DrawerLayout>
+                    <OrderDetails />
                   </DrawerLayout>
                 </Private>
               }
