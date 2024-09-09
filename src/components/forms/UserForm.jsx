@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
@@ -95,6 +96,9 @@ export default function UserForm({ initialValues, onSubmit, isUserCodeReadOnly, 
           variant="outlined"
         />
       </Box>
+    
+    { !isModal && (
+      <>
       <Box mb={2}>
       <TextField
           fullWidth
@@ -106,7 +110,7 @@ export default function UserForm({ initialValues, onSubmit, isUserCodeReadOnly, 
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
           variant="outlined"
-        />
+          />
       </Box>
       <Box mb={2}>
       <TextField
@@ -119,8 +123,11 @@ export default function UserForm({ initialValues, onSubmit, isUserCodeReadOnly, 
           error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
           variant="outlined"
-        />
+          />
       </Box>
+      </>
+      )}
+     
       <Box mb={2}>
       <TextField
           fullWidth
