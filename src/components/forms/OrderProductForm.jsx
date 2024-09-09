@@ -1,15 +1,15 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Box, Button, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 
 export const schema = Yup.object({
-  quantity: Yup.number(),
+  quantity: Yup.number()
 });
 
 export default function OrderProductForm({ initialValues, onSubmit }) {
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: schema,

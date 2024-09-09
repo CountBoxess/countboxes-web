@@ -13,7 +13,6 @@ import {
   TablePagination,
   TableRow
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,8 +41,6 @@ export default function PaginatedTable({ items, columns, onRowClick }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const navigate = useNavigate();
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -71,8 +68,11 @@ export default function PaginatedTable({ items, columns, onRowClick }) {
           </TableHead>
           <TableBody>
             {visibleItems.map((item, rowIndex) => (
-              <StyledTableRow key={rowIndex} onClick={() => {
-                onRowClick(item)}}>
+              <StyledTableRow
+                key={rowIndex}
+                onClick={() => {
+                  onRowClick(item);
+                }}>
                 {columns.map((column) => (
                   <StyledTableCell key={column.id}>
                     {column.render ? column.render(item) : item[column.id]}
