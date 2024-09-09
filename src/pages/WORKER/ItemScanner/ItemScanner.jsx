@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Scanner from '../../../components/scanner/Scanner';
 import { Box, Button, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowBack, Cancel, Delete } from '@mui/icons-material';
+import { Cancel } from '@mui/icons-material';
 import { api } from '../../../services/api/api';
 import { showAlert } from '../../../utils/showAlert';
 import ConfirmModal from './components/ConfirmModal';
@@ -51,7 +51,7 @@ const ItemScannerPage = () => {
 
   const postScannedCode = async () => {
     try {
-      const response = await api.post(`/scan`, {
+      await api.post(`/scan`, {
         orderCode: orderId,
         loadCode: orderInfo.order.loadCode,
         productCode: scannedCode,

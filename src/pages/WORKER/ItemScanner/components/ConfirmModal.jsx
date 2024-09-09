@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React from 'react';
 
